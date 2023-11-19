@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -294,19 +293,15 @@ public class NewCliente extends javax.swing.JFrame {
             if (modoEdicion) {
                 Cliente clienteEditado = new Cliente(idClienteEditar, nombre, apellido, tipoDocIdentidad,
                         numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
-
                 if (modelosCliente.actualizar(clienteEditado)) {
-                    JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente");
                     // Cerrar la ventana después de la edición
                     this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error al actualizar el cliente");
                 }
             } else {
-                
+
 // Obtener el nuevo ID basado en el valor máximo actual
-int nuevoId = modelosCliente.obtenerNuevoId();
-                Cliente nuevoCliente = new Cliente(nuevoId,nombre, apellido, tipoDocIdentidad,
+                int nuevoId = modelosCliente.obtenerNuevoId();
+                Cliente nuevoCliente = new Cliente(nuevoId, nombre, apellido, tipoDocIdentidad,
                         numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
 
                 // Llamar al método para insertar el cliente en la base de datos
@@ -398,7 +393,6 @@ int nuevoId = modelosCliente.obtenerNuevoId();
     }
 
     public void setDatosCliente(Cliente cliente) {
-        System.out.println(cliente.toString());
 
         // Establecer los datos del cliente en los campos del formulario
         jTextFieldNombre.setText(cliente.getNombre());

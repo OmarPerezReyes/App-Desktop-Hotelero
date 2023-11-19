@@ -23,15 +23,16 @@ public class ModeloCliente extends ModeloBaseImpl<Cliente> {
 
     @Override
     protected String getInsertQuery() {
-        return "INSERT INTO CLIENTE (id_cliente, nombre, apellido, tipo_doc_identidad, num_doc_identidad, telefono, email, contraseña, sexo, fecha_nacimiento) "
+        return "INSERT INTO CLIENTE (nombre, apellido, tipo_doc_identidad, num_doc_identidad, telefono, email, contraseña, sexo, fecha_nacimiento, id_cliente) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
-    @Override
-    protected String getUpdateQuery() {
-        return "UPDATE CLIENTE SET nombre=?, apellido=?, tipo_doc_identidad=?, num_doc_identidad=?, "
-                + "telefono=?, email=?, contraseña=?, sexo=?, fecha_nacimiento=? WHERE id_cliente=?";
-    }
+ @Override
+protected String getUpdateQuery() {
+    return "UPDATE CLIENTE SET nombre=?, apellido=?, tipo_doc_identidad=?, num_doc_identidad=?, "
+            + "telefono=?, email=?, contraseña=?, sexo=?, fecha_nacimiento=? WHERE id_cliente=?";
+}
+
     
        @Override
     protected String getMaxIdQuery() {
@@ -58,19 +59,19 @@ public class ModeloCliente extends ModeloBaseImpl<Cliente> {
 
     @Override
     protected void mapEntityToStatement(Cliente entidad, PreparedStatement statement) throws SQLException {
-        statement.setInt(1, entidad.getIdCliente());
-        statement.setString(2, entidad.getNombre());
-        statement.setString(3, entidad.getApellido());
-        statement.setString(4, entidad.getTipoDocIdentidad());
-        statement.setString(5, entidad.getNumDocIdentidad());
-        statement.setString(6, entidad.getTelefono());
-        statement.setString(7, entidad.getEmail());
-        statement.setString(8, entidad.getContraseña());
-        statement.setString(9, entidad.getSexo());
-        statement.setDate(10, new java.sql.Date(entidad.getFechaNacimiento().getTime()));
+        statement.setString(1, entidad.getNombre());
+        statement.setString(2, entidad.getApellido());
+        statement.setString(3, entidad.getTipoDocIdentidad());
+        statement.setString(4, entidad.getNumDocIdentidad());
+        statement.setString(5, entidad.getTelefono());
+        statement.setString(6, entidad.getEmail());
+        statement.setString(7, entidad.getContraseña());
+        statement.setString(8, entidad.getSexo());
+        statement.setDate(9, new java.sql.Date(entidad.getFechaNacimiento().getTime()));
+        statement.setInt(10, entidad.getIdCliente());
     }
     
-    
+       
 }
 
 

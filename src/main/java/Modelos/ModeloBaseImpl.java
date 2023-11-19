@@ -128,15 +128,18 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
             int filasAfectadas = statement.executeUpdate();
 
             if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Elemento actualizado exitosamente");
                 return true;
             } else {
+                JOptionPane.showMessageDialog(null, "Error al intentar actualizar el elemento", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } finally {
             ConnectionDB.cerrarConexion();
         }
+    
     }
-
     protected abstract void mapEntityToStatement(T entidad, PreparedStatement statement) throws SQLException;
 }
+
 
