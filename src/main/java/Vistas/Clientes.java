@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -62,6 +63,11 @@ public class Clientes extends javax.swing.JFrame {
         });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,15 +166,12 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(8, 8, 8)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -235,6 +238,44 @@ public class Clientes extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonEliminarMouseClicked
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        int filaSeleccionada = jTableDatos.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            // Obtener datos de la fila seleccionada
+            int idCliente = (int) jTableDatos.getValueAt(filaSeleccionada, 0);
+            String nombre = (String) jTableDatos.getValueAt(filaSeleccionada, 1);
+            String apellido = (String) jTableDatos.getValueAt(filaSeleccionada, 2);
+            String tipoDocIdentidad = (String) jTableDatos.getValueAt(filaSeleccionada, 3);
+            String numDocIdentidad = (String) jTableDatos.getValueAt(filaSeleccionada, 4);
+            String telefono = (String) jTableDatos.getValueAt(filaSeleccionada, 5);
+            String email = (String) jTableDatos.getValueAt(filaSeleccionada, 6);
+            String contraseña = (String) jTableDatos.getValueAt(filaSeleccionada, 7);
+            String sexo = (String) jTableDatos.getValueAt(filaSeleccionada, 8);
+            Date fechaNacimiento = (Date) jTableDatos.getValueAt(filaSeleccionada, 9);
+
+            // Crear un objeto Cliente con los datos obtenidos
+            Cliente cliente = new Cliente(idCliente, nombre, apellido, tipoDocIdentidad, numDocIdentidad,
+                    telefono, email, contraseña, sexo, fechaNacimiento);
+
+            // Crear y mostrar el formulario NewCliente con los datos del cliente
+            NewCliente newClienteForm = new NewCliente();
+            newClienteForm.setDatosCliente(cliente);
+            newClienteForm.setModoEdicion(true, idCliente);
+            newClienteForm.setLocationRelativeTo(null); // Centrar en la pantalla
+            newClienteForm.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    cargarDatosEnTabla(); // Actualizar la tabla después de cerrar el formulario
+                }
+            });
+            newClienteForm.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila para modificar.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
      * @param args the command line arguments

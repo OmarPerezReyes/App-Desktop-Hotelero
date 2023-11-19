@@ -110,4 +110,23 @@ public class Cliente {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+    // En la clase Cliente
+
+@Override
+public String toString() {
+    return "Cliente{" +
+            "id=" + idCliente +
+            ", nombre='" + nombre + '\'' +
+            ", apellido='" + apellido + '\'' +
+            ", tipoDocIdentidad='" + tipoDocIdentidad + '\'' +
+            ", numDocIdentidad='" + numDocIdentidad + '\'' +
+            ", telefono='" + telefono + '\'' +
+            ", email='" + email + '\'' +
+            ", contraseña='" + contraseña + '\'' +
+            ", sexo='" + sexo + '\'' +
+            ", fechaNacimiento=" + fechaNacimiento +
+            '}';
+}
+
 }

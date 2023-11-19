@@ -1,19 +1,19 @@
 -- INSERTS PARA LA TABLA CLIENTE
 INSERT INTO CLIENTE (id_cliente, nombre, apellido, tipo_doc_identidad, num_doc_identidad, telefono, email, contraseña, sexo, fecha_nacimiento)
 VALUES
-(1, 'John', 'Doe', 'DNI', '12345678', '123-456-7890', 'john.doe@example.com', 'password123', 'Masculino', '1990-05-15'),
-(2, 'Jane', 'Smith', 'PASSPORT', 'A98765432', '987-654-3210', 'jane.smith@example.com', 'securepass', 'Femenino', '1985-08-20'),
-(3, 'Robert', 'Johnson', 'DNI', '87654321', '555-444-3333', 'robert.j@example.com', 'pass1234', 'Masculino', '1988-12-10'),
-(4, 'Emily', 'Williams', 'PASSPORT', 'B56789012', '111-222-3333', 'emily.w@example.com', 'securepass2', 'Femenino', '1992-04-25'),
-(5, 'Michael', 'Brown', 'DNI', '11111111', '777-888-9999', 'michael.b@example.com', 'mypassword', 'Masculino', '1987-07-15'),
-(6, 'Sophia', 'Jones', 'PASSPORT', 'C98765432', '555-555-5555', 'sophia.j@example.com', 'password567', 'Femenino', '1995-02-28'),
-(7, 'William', 'Taylor', 'DNI', '22223333', '123-456-7890', 'william.t@example.com', 'p@ssw0rd', 'Masculino', '1991-09-08'),
-(8, 'Olivia', 'Clark', 'PASSPORT', 'D44445555', '987-654-3210', 'olivia.c@example.com', 'olivia_pass', 'Femenino', '1984-11-03'),
-(9, 'Ethan', 'Harris', 'DNI', '55556666', '666-777-8888', 'ethan.h@example.com', 'secure123', 'Masculino', '1989-06-20'),
-(10, 'Ava', 'Martin', 'PASSPORT', 'E12345678', '222-333-4444', 'ava.m@example.com', 'myp@ssword', 'Femenino', '1993-03-12'),
-(11, 'Liam', 'Ward', 'DNI', '77778888', '888-999-0000', 'liam.w@example.com', 'wardpass', 'Masculino', '1994-08-05'),
-(12, 'Mia', 'Fisher', 'PASSPORT', 'F87654321', '111-222-3333', 'mia.f@example.com', 'secure_mia', 'Femenino', '1996-01-18'),
-(13, 'Mar', 'Fis', 'PASSPORT', 'F87654321', '111-222-3333', 'mar.f@example.com', 'secure_mia', 'Femenino', '1996-01-18');
+(1, 'John', 'Doe', 'DNI', '12345678', '+54 123-456-7890', 'john.doe@example.com', 'password123', 'Masculino', '1990-05-15'),
+(2, 'Jane', 'Smith', 'Pasaporte', 'A98765432', '+591 987-654-3210', 'jane.smith@example.com', 'securepass', 'Femenino', '1985-08-20'),
+(3, 'Robert', 'Johnson', 'DNI', '87654321', '+54 555-444-3333', 'robert.j@example.com', 'pass1234', 'Masculino', '1988-12-10'),
+(4, 'Emily', 'Williams', 'Pasaporte', 'B56789012', '+591 111-222-3333', 'emily.w@example.com', 'securepass2', 'Femenino', '1992-04-25'),
+(5, 'Michael', 'Brown', 'DNI', '11111111', '+54 777-888-9999', 'michael.b@example.com', 'mypassword', 'Masculino', '1987-07-15'),
+(6, 'Sophia', 'Jones', 'Pasaporte', 'C98765432', '+591 555-555-5555', 'sophia.j@example.com', 'password567', 'Femenino', '1995-02-28'),
+(7, 'William', 'Taylor', 'DNI', '22223333', '+54 123-456-7890', 'william.t@example.com', 'p@ssw0rd', 'Masculino', '1991-09-08'),
+(8, 'Olivia', 'Clark', 'Pasaporte', 'D44445555', '+591 987-654-3210', 'olivia.c@example.com', 'olivia_pass', 'Femenino', '1984-11-03'),
+(9, 'Ethan', 'Harris', 'DNI', '55556666', '+54 666-777-8888', 'ethan.h@example.com', 'secure123', 'Masculino', '1989-06-20'),
+(10, 'Ava', 'Martin', 'Pasaporte', 'E12345678', '+591 222-333-4444', 'ava.m@example.com', 'myp@ssword', 'Femenino', '1993-03-12'),
+(11, 'Liam', 'Ward', 'DNI', '77778888', '+54 888-999-0000', 'liam.w@example.com', 'wardpass', 'Masculino', '1994-08-05'),
+(12, 'Mia', 'Fisher', 'Pasaporte', 'F87654321', '+591 111-222-3333', 'mia.f@example.com', 'secure_mia', 'Femenino', '1996-01-18'),
+(13, 'Mar', 'Fis', 'Pasaporte', 'F87654321', '+591 111-222-3333', 'mar.f@example.com', 'secure_mia', 'Femenino', '1996-01-18');
 
 -- INSERTS PARA LA TABLA RESERVA
 INSERT INTO RESERVA (id_reserva, id_cliente)

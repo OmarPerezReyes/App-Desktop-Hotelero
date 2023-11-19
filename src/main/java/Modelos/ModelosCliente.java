@@ -74,7 +74,7 @@ public class ModelosCliente {
             }
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            JOptionPane.showMessageDialog(null, "No se puede eliminar el cliente debido a restricciones de clave externa", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(  null, "No se puede eliminar el cliente debido a restricciones de clave externa", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al intentar eliminar el cliente, debido a que cuenta con campos asociados", "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
@@ -167,5 +167,43 @@ public class ModelosCliente {
         // No cierres la conexión aquí, hazlo después de utilizar el último ID
     }
 }
+   
+   public boolean actualizarCliente(Cliente cliente) throws SQLException {
+    try {
+        // Consulta SQL para actualizar un cliente
+        String consulta = "UPDATE CLIENTE SET nombre=?, apellido=?, tipo_doc_identidad=?, num_doc_identidad=?, "
+                + "telefono=?, email=?, contraseña=?, sexo=?, fecha_nacimiento=? WHERE id_cliente=?";
+
+        try (Connection conexion = ConnectionDB.obtenerConexion(); PreparedStatement statement = conexion.prepareStatement(consulta)) {
+
+            statement.setString(1, cliente.getNombre());
+            statement.setString(2, cliente.getApellido());
+            statement.setString(3, cliente.getTipoDocIdentidad());
+            statement.setString(4, cliente.getNumDocIdentidad());
+            statement.setString(5, cliente.getTelefono());
+            statement.setString(6, cliente.getEmail());
+            statement.setString(7, cliente.getContraseña());
+            statement.setString(8, cliente.getSexo());
+            statement.setDate(9, new java.sql.Date(cliente.getFechaNacimiento().getTime()));
+            statement.setInt(10, cliente.getIdCliente());
+
+            int filasAfectadas = statement.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } finally {
+            ConnectionDB.cerrarConexion();
+        }
+    } catch (SQLException ex) {
+        // Manejar la excepción, si es necesario
+        // Logger.getLogger(NewCliente.class.getName()).log(Level.SEVERE, null, ex);
+        // Si la actualización falla, devolver false
+        return false;
+    }
+}
+
 
 }
