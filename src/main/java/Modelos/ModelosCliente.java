@@ -7,13 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static Controladores.ConnectionDB.obtenerConexion;
-// En ModelosCliente.java
 public class ModelosCliente {
-    private ConnectionDB connectionDB;
 
     public ModelosCliente() {
-        connectionDB = new ConnectionDB();
     }
 
     public List<Cliente> obtenerTodosClientes() throws SQLException {
@@ -22,11 +18,6 @@ public class ModelosCliente {
     }
 
     public List<Cliente> buscarClientes(String textoBuscar) throws SQLException {
-        // Verificar si la conexión está cerrada y abrir una nueva si es necesario
-        if (connectionDB.estaCerrada()) {
-            connectionDB.obtenerConexion();
-        }
-
         String consulta = "SELECT * FROM CLIENTE WHERE nombre LIKE ? OR apellido LIKE ?";
         return obtenerClientesDesdeBD(consulta, "%" + textoBuscar + "%", "%" + textoBuscar + "%");
     }
@@ -34,7 +25,7 @@ public class ModelosCliente {
     private List<Cliente> obtenerClientesDesdeBD(String consulta, String... parametros) throws SQLException {
         List<Cliente> clientes = new ArrayList<>();
 
-        try (Connection conexion = connectionDB.obtenerConexion();
+        try (Connection conexion = ConnectionDB.obtenerConexion();
              PreparedStatement statement = conexion.prepareStatement(consulta)) {
 
             // Establecer los parámetros de la consulta
@@ -62,7 +53,7 @@ public class ModelosCliente {
             }
         } finally {
             // Cerrar la conexión después de usarla
-            connectionDB.cerrarConexion();
+            ConnectionDB.cerrarConexion();
         }
 
         return clientes;

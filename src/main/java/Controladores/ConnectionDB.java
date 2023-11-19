@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnectionDB {
 
@@ -17,22 +18,29 @@ public class ConnectionDB {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             // Cargar la configuración de la base de datos desde application.properties
-            Properties propiedades = new Properties();
-            propiedades.load(ConnectionDB.class.getClassLoader().getResourceAsStream("DatesDB.properties"));
-
-            // Establecer la conexión
-            conexion = DriverManager.getConnection(
-                    propiedades.getProperty("db.url"),
-                    propiedades.getProperty("db.usuario"),
-                    propiedades.getProperty("db.contrasena")
-            );
-
-        } catch (ClassNotFoundException | SQLException | IOException e) {
-            e.printStackTrace();
+           
+        } catch (ClassNotFoundException e) {
         }
     }
 
     public static Connection obtenerConexion() {
+        try {
+             Properties propiedades = new Properties();
+            propiedades.load(ConnectionDB.class.getClassLoader().getResourceAsStream("DatesDB.properties"));
+
+
+            if (conexion == null || conexion.isClosed()) {
+                // La conexión está cerrada o es nula, obtén una nueva conexión
+                conexion = DriverManager.getConnection(
+                        propiedades.getProperty("db.url"),
+                        propiedades.getProperty("db.usuario"),
+                        propiedades.getProperty("db.contrasena")
+                );
+            }
+        } catch (SQLException e) {
+        } catch (IOException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return conexion;
     }
 
@@ -42,38 +50,6 @@ public class ConnectionDB {
                 conexion.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Statement crearStatement() {
-        Statement statement = null;
-        try {
-            if (conexion != null && !conexion.isClosed()) {
-                statement = conexion.createStatement();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return statement;
-    }
-
-    public static void cerrarStatement(Statement statement) {
-        try {
-            if (statement != null && !statement.isClosed()) {
-                statement.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean estaCerrada() {
-        try {
-            return conexion == null || conexion.isClosed();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return true;
         }
     }
 }

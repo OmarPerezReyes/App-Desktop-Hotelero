@@ -8,8 +8,6 @@ import Modelos.ModelosCliente;
 
 import Modelos.Cliente;
 
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.List;
  * @author omarperez
  */
 public class Clientes extends javax.swing.JFrame {
-    private ModelosCliente modelo;
+    private final ModelosCliente modelo;
 
     /**
      * Creates new form Clientes
@@ -29,23 +27,7 @@ public class Clientes extends javax.swing.JFrame {
         modelo = new ModelosCliente();
         cargarDatosEnTabla();
 
-        // Agregar un DocumentListener al JTextFieldBuscar para realizar la búsqueda en tiempo real
-        jTextFieldBuscar.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                buscarClientes();
-            }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                buscarClientes();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                // No necesario para campos no editables
-            }
-        });
     }
 
     /**
@@ -59,25 +41,15 @@ public class Clientes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextFieldBuscar = new javax.swing.JTextField();
         jButtonNuevo = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
+        jTextFieldBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextFieldBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldBuscar.setText("Buscar");
-        jTextFieldBuscar.setToolTipText("");
-        jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldBuscarActionPerformed(evt);
-            }
-
-        });
 
         jButtonNuevo.setText("Nuevo");
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +61,12 @@ public class Clientes extends javax.swing.JFrame {
         jButtonModificar.setText("Modificar");
 
         jButtonEliminar.setText("Eliminar");
+
+        jTextFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldBuscarKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,10 +87,10 @@ public class Clientes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNuevo)
                     .addComponent(jButtonModificar)
-                    .addComponent(jButtonEliminar))
+                    .addComponent(jButtonEliminar)
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -157,7 +135,6 @@ public class Clientes extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addGap(8, 8, 8)))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -186,9 +163,9 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
-    private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldBuscarActionPerformed
+    private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
+        buscarClientes();
+    }//GEN-LAST:event_jTextFieldBuscarKeyTyped
 
     /**
      * @param args the command line arguments
@@ -247,8 +224,8 @@ public class Clientes extends javax.swing.JFrame {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
             // Manejar el error
+            
         }
     }
 
@@ -277,8 +254,8 @@ public class Clientes extends javax.swing.JFrame {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
             // Manejar el error
+            
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
