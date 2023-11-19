@@ -5,7 +5,7 @@
 package Vistas;
 
 import Modelos.Cliente;
-import Modelos.ModelosCliente;
+import Modelos.ModeloCliente;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -289,13 +289,13 @@ public class NewCliente extends javax.swing.JFrame {
             String contraseña = jTextFieldPass.getText();
             String sexo = jComboBoxSexo.getSelectedItem().toString();
             Date fechaNacimiento = jDateChooserFechaNacimiento.getDate();
-            ModelosCliente modelosCliente = new ModelosCliente();
+            ModeloCliente modelosCliente = new ModeloCliente();
 
             if (modoEdicion) {
                 Cliente clienteEditado = new Cliente(idClienteEditar, nombre, apellido, tipoDocIdentidad,
                         numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
 
-                if (modelosCliente.actualizarCliente(clienteEditado)) {
+                if (modelosCliente.actualizar(clienteEditado)) {
                     JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente");
                     // Cerrar la ventana después de la edición
                     this.dispose();
@@ -303,11 +303,14 @@ public class NewCliente extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error al actualizar el cliente");
                 }
             } else {
-                Cliente nuevoCliente = new Cliente(0, nombre, apellido, tipoDocIdentidad,
+                
+// Obtener el nuevo ID basado en el valor máximo actual
+int nuevoId = modelosCliente.obtenerNuevoId();
+                Cliente nuevoCliente = new Cliente(nuevoId,nombre, apellido, tipoDocIdentidad,
                         numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
 
                 // Llamar al método para insertar el cliente en la base de datos
-                if (modelosCliente.insertarCliente(nuevoCliente)) {
+                if (modelosCliente.insertar(nuevoCliente)) {
                     limpiarFormulario();
                     // Cerrar la ventana si la inserción es correcta
                     this.dispose();

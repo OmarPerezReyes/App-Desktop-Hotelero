@@ -4,7 +4,7 @@
  */
 package Vistas;
 
-import Modelos.ModelosCliente;
+import Modelos.ModeloCliente;
 
 import Modelos.Cliente;
 import java.awt.event.WindowAdapter;
@@ -22,15 +22,12 @@ import javax.swing.JOptionPane;
  */
 public class Clientes extends javax.swing.JFrame {
 
-    private final ModelosCliente modelo;
+    private final ModeloCliente modelo;
 
-    /**
-     * Creates new form Clientes
-     */
     public Clientes() {
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
-        modelo = new ModelosCliente();
+        modelo = new ModeloCliente();
         cargarDatosEnTabla();
     }
 
@@ -314,7 +311,7 @@ public class Clientes extends javax.swing.JFrame {
 
     private void cargarDatosEnTabla() {
         try {
-            List<Cliente> clientes = modelo.obtenerTodosClientes();
+            List<Cliente> clientes = modelo.obtenerTodos();
             DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
             model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
@@ -343,7 +340,7 @@ public class Clientes extends javax.swing.JFrame {
     private void buscarClientes() {
         try {
             String textoBuscar = jTextFieldBuscar.getText();
-            List<Cliente> clientes = modelo.buscarClientes(textoBuscar);
+            List<Cliente> clientes = modelo.buscar(textoBuscar);
 
             DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
             model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
@@ -374,7 +371,7 @@ public class Clientes extends javax.swing.JFrame {
         try {
             int idCliente = (int) jTableDatos.getValueAt(fila, 0);
             // Llamada al método del modelo para eliminar el cliente
-            modelo.eliminarCliente(idCliente);
+            modelo.eliminar(idCliente);
 
             // Actualizar la tabla después de eliminar la fila
             cargarDatosEnTabla();
