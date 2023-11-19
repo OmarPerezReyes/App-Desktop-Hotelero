@@ -36,8 +36,8 @@ CREATE TABLE DETALLE_RESERVA(
     id_det_reserva INTEGER PRIMARY KEY NOT NULL,
     id_reserva INTEGER NOT NULL,
     id_habitacion INTEGER NOT NULL,
-    fecha_entrada TIMESTAMP NOT NULL,
-    fecha_salida TIMESTAMP NOT NULL,
+    fecha_entrada DATETIME NOT NULL,
+    fecha_salida DATETIME NOT NULL,
     FOREIGN KEY (id_reserva) REFERENCES RESERVA(id_reserva),
     FOREIGN KEY (id_habitacion) REFERENCES HABITACION(numero_habitacion)
 );
@@ -53,13 +53,13 @@ CREATE TABLE BOLETA(
 
 CREATE TABLE ACOMPAÑANTE(
     id_acompañante INTEGER PRIMARY KEY NOT NULL,
-    id_reserva INTEGER NOT NULL,
+    id_det_reserva INTEGER NOT NULL,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     tipo_doc_identidad VARCHAR(15) NOT NULL,
     num_doc_identidad VARCHAR(15) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    FOREIGN KEY (id_reserva) REFERENCES DETALLE_RESERVA(id_det_reserva, id_habitacion)
+    FOREIGN KEY (id_det_reserva) REFERENCES DETALLE_RESERVA(id_det_reserva)
 );
 
 CREATE TABLE EMPLEADO (
