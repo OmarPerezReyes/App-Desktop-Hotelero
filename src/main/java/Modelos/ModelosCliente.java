@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ModelosCliente {
 
@@ -25,8 +26,7 @@ public class ModelosCliente {
     private List<Cliente> obtenerClientesDesdeBD(String consulta, String... parametros) throws SQLException {
         List<Cliente> clientes = new ArrayList<>();
 
-        try (Connection conexion = ConnectionDB.obtenerConexion();
-             PreparedStatement statement = conexion.prepareStatement(consulta)) {
+        try (Connection conexion = ConnectionDB.obtenerConexion(); PreparedStatement statement = conexion.prepareStatement(consulta)) {
 
             // Establecer los parámetros de la consulta
             for (int i = 0; i < parametros.length; i++) {
@@ -57,5 +57,29 @@ public class ModelosCliente {
         }
 
         return clientes;
+    }
+
+    public void eliminarCliente(int idCliente) throws SQLException {
+    String consulta = "DELETE FROM CLIENTE WHERE id_cliente = ?";
+
+    try (Connection conexion = ConnectionDB.obtenerConexion();
+         PreparedStatement statement = conexion.prepareStatement(consulta)) {
+
+        statement.setInt(1, idCliente);
+        int filasAfectadas = statement.executeUpdate();
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un cliente con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (SQLIntegrityConstraintViolationException e) {
+        JOptionPane.showMessageDialog(null, "No se puede eliminar el cliente debido a restricciones de clave externa", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al intentar eliminar el cliente, debido a que cuenta con campos asociados", "Error", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        ConnectionDB.cerrarConexion();
+    }
     }
 }

@@ -11,6 +11,7 @@ import Modelos.Cliente;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,8 +27,6 @@ public class Clientes extends javax.swing.JFrame {
         initComponents();
         modelo = new ModelosCliente();
         cargarDatosEnTabla();
-
-
     }
 
     /**
@@ -61,6 +60,11 @@ public class Clientes extends javax.swing.JFrame {
         jButtonModificar.setText("Modificar");
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEliminarMouseClicked(evt);
+            }
+        });
 
         jTextFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -104,8 +108,33 @@ public class Clientes extends javax.swing.JFrame {
             new String [] {
                 "ID empleado", "Nombre", "Apellido", "Tipo Doc. Identidad", "Número Doc. Identidad", "Teléfono", "Email", "Contraseña", "Sexo", "Fecha de Nacimiento"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableDatos);
+        if (jTableDatos.getColumnModel().getColumnCount() > 0) {
+            jTableDatos.getColumnModel().getColumn(0).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(1).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(2).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(3).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(4).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(5).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(6).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(7).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(8).setResizable(false);
+            jTableDatos.getColumnModel().getColumn(9).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel1.setText(" CRUD Clientes");
@@ -166,6 +195,27 @@ public class Clientes extends javax.swing.JFrame {
     private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
         buscarClientes();
     }//GEN-LAST:event_jTextFieldBuscarKeyTyped
+
+    private void jTableDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDatosMouseClicked
+         
+    }//GEN-LAST:event_jTableDatosMouseClicked
+
+    private void jButtonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseClicked
+  int filaSeleccionada = jTableDatos.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro que deseas eliminar este cliente?",
+                    "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                eliminarFila(filaSeleccionada);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEliminarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -256,6 +306,21 @@ public class Clientes extends javax.swing.JFrame {
         } catch (SQLException e) {
             // Manejar el error
             
+        }
+    }
+
+    private void eliminarFila(int fila) {
+         try {
+            int idCliente = (int) jTableDatos.getValueAt(fila, 0);
+            // Llamada al método del modelo para eliminar el cliente
+            modelo.eliminarCliente(idCliente);
+
+            // Actualizar la tabla después de eliminar la fila
+            cargarDatosEnTabla();
+
+        } catch (SQLException e) {
+             // Manejar el error
+             
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

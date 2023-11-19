@@ -12,7 +12,8 @@ VALUES
 (9, 'Ethan', 'Harris', 'DNI', '55556666', '666-777-8888', 'ethan.h@example.com', 'secure123', 'Masculino', '1989-06-20'),
 (10, 'Ava', 'Martin', 'PASSPORT', 'E12345678', '222-333-4444', 'ava.m@example.com', 'myp@ssword', 'Femenino', '1993-03-12'),
 (11, 'Liam', 'Ward', 'DNI', '77778888', '888-999-0000', 'liam.w@example.com', 'wardpass', 'Masculino', '1994-08-05'),
-(12, 'Mia', 'Fisher', 'PASSPORT', 'F87654321', '111-222-3333', 'mia.f@example.com', 'secure_mia', 'Femenino', '1996-01-18');
+(12, 'Mia', 'Fisher', 'PASSPORT', 'F87654321', '111-222-3333', 'mia.f@example.com', 'secure_mia', 'Femenino', '1996-01-18'),
+(13, 'Mar', 'Fis', 'PASSPORT', 'F87654321', '111-222-3333', 'mar.f@example.com', 'secure_mia', 'Femenino', '1996-01-18');
 
 -- INSERTS PARA LA TABLA RESERVA
 INSERT INTO RESERVA (id_reserva, id_cliente)
