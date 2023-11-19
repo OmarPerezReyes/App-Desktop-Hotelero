@@ -7,6 +7,8 @@ package Vistas;
 import Modelos.ModelosCliente;
 
 import Modelos.Cliente;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
  * @author omarperez
  */
 public class Clientes extends javax.swing.JFrame {
+
     private final ModelosCliente modelo;
 
     /**
@@ -25,6 +28,7 @@ public class Clientes extends javax.swing.JFrame {
      */
     public Clientes() {
         initComponents();
+        setLocationRelativeTo(null); // Centrar en la pantalla
         modelo = new ModelosCliente();
         cargarDatosEnTabla();
     }
@@ -189,7 +193,22 @@ public class Clientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
-        // TODO add your handling code here:
+        NewCliente newClienteForm = new NewCliente();
+        newClienteForm.setLocationRelativeTo(null); // Centrar en la pantalla
+        // Agregar un WindowListener al formulario llamado
+        newClienteForm.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Este método se llamará cuando el formulario llamado se cierre con dispose()
+                System.out.println("El formulario llamado se ha cerrado con dispose()");
+
+                // Realiza aquí las acciones que deseas después de cerrar el formulario llamado
+                cargarDatosEnTabla();
+            }
+        });
+        newClienteForm.setVisible(true);
+
+
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
@@ -197,11 +216,11 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarKeyTyped
 
     private void jTableDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDatosMouseClicked
-         
+
     }//GEN-LAST:event_jTableDatosMouseClicked
 
     private void jButtonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseClicked
-  int filaSeleccionada = jTableDatos.getSelectedRow();
+        int filaSeleccionada = jTableDatos.getSelectedRow();
 
         if (filaSeleccionada != -1) {
             int confirmacion = JOptionPane.showConfirmDialog(this,
@@ -251,6 +270,7 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
     }
+
     private void cargarDatosEnTabla() {
         try {
             List<Cliente> clientes = modelo.obtenerTodosClientes();
@@ -259,23 +279,23 @@ public class Clientes extends javax.swing.JFrame {
 
             for (Cliente cliente : clientes) {
                 Object[] fila = {
-                        cliente.getIdCliente(),
-                        cliente.getNombre(),
-                        cliente.getApellido(),
-                        cliente.getTipoDocIdentidad(),
-                        cliente.getNumDocIdentidad(),
-                        cliente.getTelefono(),
-                        cliente.getEmail(),
-                        cliente.getContraseña(),
-                        cliente.getSexo(),
-                        cliente.getFechaNacimiento()
+                    cliente.getIdCliente(),
+                    cliente.getNombre(),
+                    cliente.getApellido(),
+                    cliente.getTipoDocIdentidad(),
+                    cliente.getNumDocIdentidad(),
+                    cliente.getTelefono(),
+                    cliente.getEmail(),
+                    cliente.getContraseña(),
+                    cliente.getSexo(),
+                    cliente.getFechaNacimiento()
                 };
                 model.addRow(fila);
             }
 
         } catch (SQLException e) {
             // Manejar el error
-            
+
         }
     }
 
@@ -289,28 +309,28 @@ public class Clientes extends javax.swing.JFrame {
 
             for (Cliente cliente : clientes) {
                 Object[] fila = {
-                        cliente.getIdCliente(),
-                        cliente.getNombre(),
-                        cliente.getApellido(),
-                        cliente.getTipoDocIdentidad(),
-                        cliente.getNumDocIdentidad(),
-                        cliente.getTelefono(),
-                        cliente.getEmail(),
-                        cliente.getContraseña(),
-                        cliente.getSexo(),
-                        cliente.getFechaNacimiento()
+                    cliente.getIdCliente(),
+                    cliente.getNombre(),
+                    cliente.getApellido(),
+                    cliente.getTipoDocIdentidad(),
+                    cliente.getNumDocIdentidad(),
+                    cliente.getTelefono(),
+                    cliente.getEmail(),
+                    cliente.getContraseña(),
+                    cliente.getSexo(),
+                    cliente.getFechaNacimiento()
                 };
                 model.addRow(fila);
             }
 
         } catch (SQLException e) {
             // Manejar el error
-            
+
         }
     }
 
     private void eliminarFila(int fila) {
-         try {
+        try {
             int idCliente = (int) jTableDatos.getValueAt(fila, 0);
             // Llamada al método del modelo para eliminar el cliente
             modelo.eliminarCliente(idCliente);
@@ -319,10 +339,12 @@ public class Clientes extends javax.swing.JFrame {
             cargarDatosEnTabla();
 
         } catch (SQLException e) {
-             // Manejar el error
-             
+            // Manejar el error
+
         }
     }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
