@@ -4,17 +4,48 @@
  */
 package Vistas;
 
+import Modelos.ModelosCliente;
+
+import Modelos.Cliente;
+
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author omarperez
  */
 public class Clientes extends javax.swing.JFrame {
+    private ModelosCliente modelo;
 
     /**
      * Creates new form Clientes
      */
     public Clientes() {
         initComponents();
+        modelo = new ModelosCliente();
+        cargarDatosEnTabla();
+
+        // Agregar un DocumentListener al JTextFieldBuscar para realizar la búsqueda en tiempo real
+        jTextFieldBuscar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                buscarClientes();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                buscarClientes();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // No necesario para campos no editables
+            }
+        });
     }
 
     /**
@@ -45,6 +76,7 @@ public class Clientes extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldBuscarActionPerformed(evt);
             }
+
         });
 
         jButtonNuevo.setText("Nuevo");
@@ -165,7 +197,7 @@ public class Clientes extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -192,7 +224,63 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
     }
+    private void cargarDatosEnTabla() {
+        try {
+            List<Cliente> clientes = modelo.obtenerTodosClientes();
+            DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
+            model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
+            for (Cliente cliente : clientes) {
+                Object[] fila = {
+                        cliente.getIdCliente(),
+                        cliente.getNombre(),
+                        cliente.getApellido(),
+                        cliente.getTipoDocIdentidad(),
+                        cliente.getNumDocIdentidad(),
+                        cliente.getTelefono(),
+                        cliente.getEmail(),
+                        cliente.getContraseña(),
+                        cliente.getSexo(),
+                        cliente.getFechaNacimiento()
+                };
+                model.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar el error
+        }
+    }
+
+    private void buscarClientes() {
+        try {
+            String textoBuscar = jTextFieldBuscar.getText();
+            List<Cliente> clientes = modelo.buscarClientes(textoBuscar);
+
+            DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
+            model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+            for (Cliente cliente : clientes) {
+                Object[] fila = {
+                        cliente.getIdCliente(),
+                        cliente.getNombre(),
+                        cliente.getApellido(),
+                        cliente.getTipoDocIdentidad(),
+                        cliente.getNumDocIdentidad(),
+                        cliente.getTelefono(),
+                        cliente.getEmail(),
+                        cliente.getContraseña(),
+                        cliente.getSexo(),
+                        cliente.getFechaNacimiento()
+                };
+                model.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar el error
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
