@@ -1,14 +1,13 @@
 package Vistas;
 
-import Modelos.ModeloCliente;
+import Modelos.ModeloAcompañante;
 
-import Modelos.Cliente;
+import Modelos.Acompañante;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -16,14 +15,14 @@ import javax.swing.JOptionPane;
  *
  * @author omarperez
  */
-public class CRUDCliente extends javax.swing.JFrame {
+public class CRUDAcompañante extends javax.swing.JFrame {
 
-    private final ModeloCliente modelo;
+    private final ModeloAcompañante modelo;
 
-    public CRUDCliente() {
+    public CRUDAcompañante() {
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
-        modelo = new ModeloCliente();
+        modelo = new ModeloAcompañante();
         cargarDatosEnTabla();
     }
 
@@ -37,10 +36,10 @@ public class CRUDCliente extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
         jTextFieldBuscar = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButtonVolver = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableDatos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,41 +96,8 @@ public class CRUDCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nombre", "Apellido", "Tipo Doc. Identidad", "Número Doc. Identidad", "Teléfono", "Email", "Contraseña", "Sexo", "Fecha de Nacimiento"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTableDatos);
-        if (jTableDatos.getColumnModel().getColumnCount() > 0) {
-            jTableDatos.getColumnModel().getColumn(0).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(1).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(2).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(3).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(4).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(5).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(6).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(7).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(8).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(9).setResizable(false);
-        }
-
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel1.setText(" CRUD Clientes");
+        jLabel1.setText(" CRUD Acompañante");
 
         jButtonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/volver-flecha.png"))); // NOI18N
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +106,27 @@ public class CRUDCliente extends javax.swing.JFrame {
             }
         });
 
+        jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "ID Det. Reserva", "Nombre", "Apellido", "Tipo Doc. Identidad", "Número Doc. Identidad", "Correo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableDatos);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,34 +134,28 @@ public class CRUDCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(12, 12, 12)
                         .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,7 +171,8 @@ public class CRUDCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -205,7 +187,7 @@ public class CRUDCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarKeyTyped
 
     private void jButtonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseClicked
-       eliminar();
+        eliminar();
     }//GEN-LAST:event_jButtonEliminarMouseClicked
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -219,62 +201,56 @@ public class CRUDCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CRUDCliente().setVisible(true);
+                new CRUDAcompañante().setVisible(true);
             }
         });
     }
 
     private void cargarDatosEnTabla() {
         try {
-            List<Cliente> datos = modelo.obtenerTodos();
+            List<Acompañante> datos = modelo.obtenerTodos();
+            //System.out.println(datos);
             DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
             model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
-            for (Cliente dato : datos) {
+            for (Acompañante dato : datos) {
                 Object[] fila = {
-                    dato.getIdCliente(),
+                    dato.getIdAcompañante(),
+                    dato.getIdDetReserva(),
                     dato.getNombre(),
                     dato.getApellido(),
                     dato.getTipoDocIdentidad(),
                     dato.getNumDocIdentidad(),
-                    dato.getTelefono(),
                     dato.getEmail(),
-                    dato.getContraseña(),
-                    dato.getSexo(),
-                    dato.getFechaNacimiento()
                 };
                 model.addRow(fila);
             }
 
         } catch (SQLException e) {
             // Manejar el error
-
         }
     }
 
     private void buscar() {
         try {
             String textoBuscar = jTextFieldBuscar.getText();
-            List<Cliente> datos = modelo.buscar(textoBuscar);
+            List<Acompañante> datos = modelo.buscar(textoBuscar);
 
             DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
             model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
-            for (Cliente dato : datos) {
+            for (Acompañante dato : datos) {
                 Object[] fila = {
-                    dato.getIdCliente(),
+                    dato.getIdAcompañante(),
+                    dato.getIdDetReserva(),
                     dato.getNombre(),
                     dato.getApellido(),
                     dato.getTipoDocIdentidad(),
                     dato.getNumDocIdentidad(),
-                    dato.getTelefono(),
                     dato.getEmail(),
-                    dato.getContraseña(),
-                    dato.getSexo(),
-                    dato.getFechaNacimiento()
                 };
                 model.addRow(fila);
             }
@@ -284,74 +260,52 @@ public class CRUDCliente extends javax.swing.JFrame {
 
         }
     }
-    
-    private void eliminar(){
-         int filaSeleccionada = jTableDatos.getSelectedRow();
+
+    private void eliminar() {
+        int filaSeleccionada = jTableDatos.getSelectedRow();
 
         if (filaSeleccionada != -1) {
             int confirmacion = JOptionPane.showConfirmDialog(this,
-                    "¿Seguro que deseas eliminar este cliente?",
+                    "¿Seguro que deseas eliminar este acompañante?",
                     "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
- try {
-            int idCliente = (int) jTableDatos.getValueAt(filaSeleccionada, 0);
-            // Llamada al método del modelo para eliminar el dato
-            modelo.eliminar(idCliente);
+                try {
+                    int id = (int) jTableDatos.getValueAt(filaSeleccionada, 0);
+                    modelo.eliminar(id);
 
-            // Actualizar la tabla después de eliminar la fila
-            cargarDatosEnTabla();
+                    // Actualizar la tabla después de eliminar la fila
+                    cargarDatosEnTabla();
 
-        } catch (SQLException e) {
-            // Manejar el error
+                } catch (SQLException e) {
+                    // Manejar el error
 
-        }            }
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void nuevo(){
-        NewCliente newForm = new NewCliente();
-        newForm.setLocationRelativeTo(null); // Centrar en la pantalla
-        // Agregar un WindowListener al formulario llamado
-        newForm.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // Este método se llamará cuando el formulario llamado se cierre con dispose()
-                System.out.println("El formulario llamado se ha cerrado con dispose()");
-
-                // Realiza aquí las acciones que deseas después de cerrar el formulario llamado
-                cargarDatosEnTabla();
-            }
-        });
-        newForm.setVisible(true);
-
-    }
-    
-    private void modificar(){
+    private void modificar() {
         int filaSeleccionada = jTableDatos.getSelectedRow();
 
         if (filaSeleccionada != -1) {
             // Obtener datos de la fila seleccionada
             int id = (int) jTableDatos.getValueAt(filaSeleccionada, 0);
-            String nombre = (String) jTableDatos.getValueAt(filaSeleccionada, 1);
-            String apellido = (String) jTableDatos.getValueAt(filaSeleccionada, 2);
-            String tipoDocIdentidad = (String) jTableDatos.getValueAt(filaSeleccionada, 3);
-            String numDocIdentidad = (String) jTableDatos.getValueAt(filaSeleccionada, 4);
-            String telefono = (String) jTableDatos.getValueAt(filaSeleccionada, 5);
+            int idReserva = (int) jTableDatos.getValueAt(filaSeleccionada, 1);
+            String nombre = (String) jTableDatos.getValueAt(filaSeleccionada, 2);
+            String apellido = (String) jTableDatos.getValueAt(filaSeleccionada, 3);
+            String tipoDocIdentidad = (String) jTableDatos.getValueAt(filaSeleccionada, 4);
+            String numDocIdentidad = (String) jTableDatos.getValueAt(filaSeleccionada, 5);
             String email = (String) jTableDatos.getValueAt(filaSeleccionada, 6);
-            String contraseña = (String) jTableDatos.getValueAt(filaSeleccionada, 7);
-            String sexo = (String) jTableDatos.getValueAt(filaSeleccionada, 8);
-            Date fechaNacimiento = (Date) jTableDatos.getValueAt(filaSeleccionada, 9);
 
-            // Crear un objeto Cliente con los datos obtenidos
-            Cliente obj = new Cliente(id, nombre, apellido, tipoDocIdentidad, numDocIdentidad,
-                    telefono, email, contraseña, sexo, fechaNacimiento);
+            // Crear un objeto Acompañante con los datos obtenidos
+            Acompañante obj = new Acompañante(id, idReserva,nombre, apellido, tipoDocIdentidad, numDocIdentidad, email);
 
-            // Crear y mostrar el formulario NewCliente con los datos del dato
-            NewCliente newForm = new NewCliente();
+            // Crear y mostrar el formulario NewAcompañante con los datos del Acompañante
+            NewAcompañante newForm = new NewAcompañante();
             newForm.setDatos(obj);
             newForm.setModoEdicion(true, id);
             newForm.setLocationRelativeTo(null); // Centrar en la pantalla
@@ -368,6 +322,24 @@ public class CRUDCliente extends javax.swing.JFrame {
         }
     }
 
+    private void nuevo() {
+        NewAcompañante newForm = new NewAcompañante();
+        newForm.setLocationRelativeTo(null); // Centrar en la pantalla
+        // Agregar un WindowListener al formulario llamado
+        newForm.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Este método se llamará cuando el formulario llamado se cierre con dispose()
+                System.out.println("El formulario llamado se ha cerrado con dispose()");
+
+                // Realiza aquí las acciones que deseas después de cerrar el formulario llamado
+                cargarDatosEnTabla();
+            }
+        });
+        newForm.setVisible(true);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
@@ -376,7 +348,7 @@ public class CRUDCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableDatos;
     private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables

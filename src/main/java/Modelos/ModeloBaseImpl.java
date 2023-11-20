@@ -1,4 +1,5 @@
 package Modelos;
+
 import Controladores.ConnectionDB;
 
 import java.sql.Connection;
@@ -12,10 +13,15 @@ import javax.swing.JOptionPane;
 public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
 
     protected abstract String getSelectAllQuery();
+
     protected abstract String getSearchQuery();
+
     protected abstract String getDeleteQuery();
+
     protected abstract String getInsertQuery();
+
     protected abstract String getUpdateQuery();
+
     protected abstract String getMaxIdQuery();
 
     protected abstract T mapResultSetToEntity(ResultSet resultSet) throws SQLException;
@@ -26,7 +32,7 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
 
         try (Connection conexion = ConnectionDB.obtenerConexion(); PreparedStatement statement = conexion.prepareStatement(getSelectAllQuery())) {
             ResultSet resultSet = statement.executeQuery();
-
+            System.out.println(resultSet);
             while (resultSet.next()) {
                 T entidad = mapResultSetToEntity(resultSet);
                 entidades.add(entidad);
@@ -78,14 +84,13 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
             ConnectionDB.cerrarConexion();
         }
     }
-    
+
     @Override
     public int obtenerNuevoId() throws SQLException {
         int nuevoId = 0;
 
         // Implementación predeterminada para obtener el máximo ID de la tabla
-        try (Connection conexion = ConnectionDB.obtenerConexion();
-             PreparedStatement statement = conexion.prepareStatement(getMaxIdQuery())) {
+        try (Connection conexion = ConnectionDB.obtenerConexion(); PreparedStatement statement = conexion.prepareStatement(getMaxIdQuery())) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -103,16 +108,26 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
 
         try (Connection conexion = ConnectionDB.obtenerConexion(); PreparedStatement statement = conexion.prepareStatement(getInsertQuery())) {
             mapEntityToStatement(entidad, statement);
+            try {
+                int filasAfectadas = statement.executeUpdate();
 
-            int filasAfectadas = statement.executeUpdate();
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(null, "Elemento registrado exitosamente");
+                    flag = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al intentar registrar el elemento", "Error", JOptionPane.ERROR_MESSAGE);
+                    flag = false;
+                }
 
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(null, "Elemento registrado exitosamente");
-                flag = true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al intentar registrar el elemento", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                // Captura la excepción SQL
+                ex.printStackTrace(); // Imprime el rastreo de la excepción en la consola (puedes comentar esto en producción)
+
+                // Muestra un JOptionPane con el mensaje de error
+                JOptionPane.showMessageDialog(null, "Error, el id de la reserva no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 flag = false;
             }
+
         } finally {
             ConnectionDB.cerrarConexion();
         }
@@ -137,9 +152,8 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
         } finally {
             ConnectionDB.cerrarConexion();
         }
-    
+
     }
+
     protected abstract void mapEntityToStatement(T entidad, PreparedStatement statement) throws SQLException;
 }
-
-

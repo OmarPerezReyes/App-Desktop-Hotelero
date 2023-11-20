@@ -1,7 +1,7 @@
 package Vistas;
 
-import Modelos.Empleado;
-import Modelos.ModeloEmpleado;
+import Modelos.Acompañante;
+import Modelos.ModeloAcompañante;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -11,12 +11,12 @@ import java.util.logging.Logger;
  *
  * @author omarperez
  */
-public class NewEmpleado extends javax.swing.JFrame {
+public class NewAcompañante extends javax.swing.JFrame {
 
     private boolean modoEdicion;
     private int idEditar;
 
-    public NewEmpleado() {
+    public NewAcompañante() {
         initComponents();
     }
 
@@ -34,26 +34,19 @@ public class NewEmpleado extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldDNI = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextFieldTelefono = new javax.swing.JTextField();
-        jComboBoxCodPais = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextFieldPass = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBoxSexo = new javax.swing.JComboBox<>();
-        jDateChooserFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonRegistrar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jTextFieldPasaporte = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldDetReserva = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel1.setText("Agregar Empleado");
+        jLabel1.setText("Agregar Acompañante");
 
         jLabel2.setText("Nombre:");
 
@@ -72,20 +65,7 @@ public class NewEmpleado extends javax.swing.JFrame {
 
         jLabel6.setText("Pasaporte: ");
 
-        jLabel7.setText("Teléfono: ");
-
-        jComboBoxCodPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+54", "+591", "+55", "+1", "+56", "+57", "+593", "+52", "+51", "+598", "+58" }));
-        jComboBoxCodPais.setSelectedIndex(8);
-
         jLabel8.setText("Email: ");
-
-        jLabel9.setText("Contraseña:");
-
-        jLabel10.setText("Sexo:");
-
-        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
-
-        jLabel11.setText("Fecha de Nacimiento: ");
 
         jButtonRegistrar.setText("Registrar");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,13 +104,15 @@ public class NewEmpleado extends javax.swing.JFrame {
 
         jTextFieldPasaporte.setEnabled(false);
 
+        jLabel12.setText("ID del detalle de reserva:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -151,35 +133,23 @@ public class NewEmpleado extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jComboBoxCodPais, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooserFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldDetReserva)))
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(108, 108, 108))
+                .addGap(99, 99, 99))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,35 +188,15 @@ public class NewEmpleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxCodPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addComponent(jLabel8))
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel9))
-                    .addComponent(jTextFieldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel10))
-                    .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addComponent(jDateChooserFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDetReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,7 +227,7 @@ public class NewEmpleado extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewEmpleado().setVisible(true);
+                new NewAcompañante().setVisible(true);
             }
         });
     }
@@ -288,15 +238,11 @@ public class NewEmpleado extends javax.swing.JFrame {
         jComboBoxTipoDocIdentidad.setSelectedIndex(0);
         jTextFieldDNI.setText("");
         jTextFieldPasaporte.setText("");
-        jTextFieldTelefono.setText("");
-        jComboBoxCodPais.setSelectedIndex(0);
         jTextFieldEmail.setText("");
-        jTextFieldPass.setText("");
-        jComboBoxSexo.setSelectedIndex(0);
-        jDateChooserFechaNacimiento.setDate(null);
+        jTextFieldDetReserva.setText("");
     }
 
-    public void setDatos(Empleado obj) {
+    public void setDatos(Acompañante obj) {
 
         // Establecer los datos del obj en los campos del formulario
         jTextFieldNombre.setText(obj.getNombre());
@@ -318,24 +264,9 @@ public class NewEmpleado extends javax.swing.JFrame {
             jTextFieldDNI.setText("");
         }
 
-        String telefono = obj.getTelefono();
-        String codPais = telefono.substring(0, 3);
-        String numTelefono = telefono.substring(3);
-        jComboBoxCodPais.setSelectedItem(codPais);
-        jTextFieldTelefono.setText(numTelefono);
-
         jTextFieldEmail.setText(obj.getEmail());
-        jTextFieldPass.setText(obj.getContraseña());
 
-        String sexo = obj.getSexo();
-        jComboBoxSexo.setSelectedItem(sexo);
-
-        Date fechaNacimiento = obj.getFechaNacimiento();
-        if (fechaNacimiento != null) {
-            jDateChooserFechaNacimiento.setDate(fechaNacimiento);
-        } else {
-            jDateChooserFechaNacimiento.setDate(null);
-        }
+        jTextFieldDetReserva.setText(String.valueOf(obj.getIdDetReserva()));
     }
 
     public void setModoEdicion(boolean modoEdicion, int idEditar) {
@@ -343,13 +274,14 @@ public class NewEmpleado extends javax.swing.JFrame {
         this.idEditar = idEditar;
         // Cambia el título del formulario según el modo
         if (modoEdicion) {
-            jLabel1.setText("Editar Empleado");
+            jLabel1.setText("Editar Acompañante");
             jButtonRegistrar.setText("Actualizar");
+            jTextFieldDetReserva.setEnabled(false);
             // Aquí puedes personalizar cualquier otro cambio necesario para el modo de edición
         } else {
-            jLabel1.setText("Agregar Empleado");
+            jTextFieldDetReserva.setEnabled(true);
+            jLabel1.setText("Agregar Acompañante");
             jButtonRegistrar.setText("Registrar");
-
             // Reinicia el formulario en modo de inserción
             limpiarFormulario();
         }
@@ -363,28 +295,23 @@ public class NewEmpleado extends javax.swing.JFrame {
             String apellido = jTextFieldApellido.getText();
             String tipoDocIdentidad = jComboBoxTipoDocIdentidad.getSelectedItem().toString();
             String numDocIdentidad = tipoDocIdentidad.equals("DNI") ? jTextFieldDNI.getText() : jTextFieldPasaporte.getText();
-            String telefono = jComboBoxCodPais.getSelectedItem().toString() + jTextFieldTelefono.getText();
             String email = jTextFieldEmail.getText();
-            String contraseña = jTextFieldPass.getText();
-            String sexo = jComboBoxSexo.getSelectedItem().toString();
-            Date fechaNacimiento = jDateChooserFechaNacimiento.getDate();
-            ModeloEmpleado modelos = new ModeloEmpleado();
+            int idDetReserva = Integer.parseInt(jTextFieldDetReserva.getText());
+            ModeloAcompañante modelos = new ModeloAcompañante();
 
             if (modoEdicion) {
-                Empleado editado = new Empleado(idEditar, nombre, apellido, tipoDocIdentidad,
-                        numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
+                Acompañante editado = new Acompañante(idEditar, idDetReserva, nombre, apellido, tipoDocIdentidad, numDocIdentidad, email);
                 if (modelos.actualizar(editado)) {
                     // Cerrar la ventana después de la edición
                     this.dispose();
                 }
             } else {
 
-// Obtener el nuevo ID basado en el valor máximo actual
+                // Obtener el nuevo ID basado en el valor máximo actual
                 int nuevoId = modelos.obtenerNuevoId();
-                Empleado nuevo = new Empleado(nuevoId, nombre, apellido, tipoDocIdentidad,
-                        numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
+                Acompañante nuevo = new Acompañante(nuevoId, idDetReserva, nombre, apellido, tipoDocIdentidad, numDocIdentidad, email);
 
-                // Llamar al método para insertar el empleado en la base de datos
+                // Llamar al método para insertar el Acompañante en la base de datos
                 if (modelos.insertar(nuevo)) {
                     limpiarFormulario();
                     // Cerrar la ventana si la inserción es correcta
@@ -393,35 +320,28 @@ public class NewEmpleado extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(NewEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewAcompañante.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonRegistrar;
-    private javax.swing.JComboBox<String> jComboBoxCodPais;
-    private javax.swing.JComboBox<String> jComboBoxSexo;
     private javax.swing.JComboBox<String> jComboBoxTipoDocIdentidad;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaNacimiento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldApellido;
     private javax.swing.JTextField jTextFieldDNI;
+    private javax.swing.JTextField jTextFieldDetReserva;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPasaporte;
-    private javax.swing.JTextField jTextFieldPass;
-    private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
 }

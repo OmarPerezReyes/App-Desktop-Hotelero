@@ -2,6 +2,11 @@ package Modelos;
 
 import java.util.Date;
 
+/**
+ *
+ * @author omarperez
+ */
+
 public class Cliente {
     private int idCliente;
     private String nombre;

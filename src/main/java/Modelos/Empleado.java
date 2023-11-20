@@ -1,6 +1,11 @@
 package Modelos;
 import java.util.Date;
 
+/**
+ *
+ * @author omarperez
+ */
+
 public class Empleado {
     private int idEmpleado;
     private String nombre;

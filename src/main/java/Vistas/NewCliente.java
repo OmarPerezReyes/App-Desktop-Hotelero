@@ -390,10 +390,7 @@ public class NewCliente extends javax.swing.JFrame {
                     limpiarFormulario();
                     // Cerrar la ventana si la inserción es correcta
                     this.dispose();
-                } else {
-                    // Limpiar la ventana y dejarla abierta en caso de error
-                    limpiarFormulario();
-                }
+                } 
             }
 
         } catch (SQLException ex) {
