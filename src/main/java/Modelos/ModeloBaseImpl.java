@@ -79,7 +79,7 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
             }
         } catch (SQLException e) {
             // Manejar excepciones específicas, si es necesario
-            JOptionPane.showMessageDialog(null, "Error al intentar eliminar el elemento", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se puede eliminar debido a que su clave primaria está asociada en otra tabla", "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConnectionDB.cerrarConexion();
         }

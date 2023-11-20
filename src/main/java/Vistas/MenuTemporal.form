@@ -83,6 +83,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="TIPOS DE HABITACIONES"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTipoHabitacionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonHabitacion">
       <Properties>

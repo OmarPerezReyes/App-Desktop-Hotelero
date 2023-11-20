@@ -53,6 +53,11 @@ public class MenuTemporal extends javax.swing.JFrame {
         });
 
         jButtonTipoHabitacion.setText("TIPOS DE HABITACIONES");
+        jButtonTipoHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTipoHabitacionActionPerformed(evt);
+            }
+        });
 
         jButtonHabitacion.setText("HABITACIONES");
 
@@ -106,6 +111,12 @@ public class MenuTemporal extends javax.swing.JFrame {
         CRUDAcompañante crud = new CRUDAcompañante();
         crud.setVisible(true);
     }//GEN-LAST:event_jButtonAcompañanteActionPerformed
+
+    private void jButtonTipoHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTipoHabitacionActionPerformed
+        this.dispose();
+        CRUDTipoHabitacion crud = new CRUDTipoHabitacion();
+        crud.setVisible(true);
+    }//GEN-LAST:event_jButtonTipoHabitacionActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
