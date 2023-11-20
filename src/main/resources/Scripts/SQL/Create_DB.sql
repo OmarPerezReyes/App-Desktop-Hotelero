@@ -63,7 +63,7 @@ CREATE TABLE ACOMPAÑANTE(
 );
 
 CREATE TABLE EMPLEADO (
-    id_cliente INTEGER PRIMARY KEY NOT NULL,
+    id_empleado INTEGER PRIMARY KEY NOT NULL,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     tipo_doc_identidad VARCHAR(15) NOT NULL,

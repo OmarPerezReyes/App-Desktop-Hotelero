@@ -100,17 +100,17 @@ VALUES
 INSERT INTO ACOMPAÑANTE (id_acompañante, id_det_reserva, nombre, apellido, tipo_doc_identidad, num_doc_identidad, email)
 VALUES
 (1, 1, 'Alice', 'Doe', 'DNI', '87654321', 'alice.doe@example.com'),
-(2, 2, 'Bob', 'Smith', 'PASSPORT', 'B12345678', 'bob.smith@example.com'),
+(2, 2, 'Bob', 'Smith', 'Pasaporte', 'B12345678', 'bob.smith@example.com'),
 (3, 3, 'Charlie', 'Williams', 'DNI', '98765432', 'charlie.w@example.com'),
-(4, 4, 'Diana', 'Brown', 'PASSPORT', 'C56789012', 'diana.b@example.com'),
+(4, 4, 'Diana', 'Brown', 'Pasaporte', 'C56789012', 'diana.b@example.com'),
 (5, 5, 'Elijah', 'Taylor', 'DNI', '11112222', 'elijah.t@example.com'),
-(6, 6, 'Fiona', 'Clark', 'PASSPORT', 'F12345678', 'fiona.c@example.com'),
+(6, 6, 'Fiona', 'Clark', 'Pasaporte', 'F12345678', 'fiona.c@example.com'),
 (7, 7, 'George', 'Harris', 'DNI', '22223333', 'george.h@example.com');
 
 -- INSERTS PARA LA TABLA EMPLEADO
 INSERT INTO EMPLEADO (id_cliente, nombre, apellido, tipo_doc_identidad, num_doc_identidad, telefono, email, contraseña, sexo, fecha_nacimiento)
 VALUES
-(101, 'Employee', 'One', 'DNI', '11112222', '999-888-7777', 'employee.one@example.com', 'employeepass', 'Male', '1980-06-10'),
-(102, 'Employee', 'Two', 'PASSPORT', 'A1112222', '777-666-5555', 'employee.two@example.com', 'securepass', 'Female', '1982-09-25'),
-(103, 'Employee', 'Three', 'DNI', '33334444', '111-222-3333', 'employee.three@example.com', 'employee3', 'Male', '1985-12-15'),
-(104, 'Employee', 'Four', 'PASSPORT', 'B44445555', '444-555-6666', 'employee.four@example.com', 'secure45', 'Female', '1987-04-28');
+(101, 'Employee', 'One', 'DNI', '11112222', '999-888-7777', 'employee.one@example.com', 'employeepass', 'Masculino', '1980-06-10'),
+(102, 'Employee', 'Two', 'Pasaporte', 'A1112222', '777-666-5555', 'employee.two@example.com', 'securepass', 'Femenino', '1982-09-25'),
+(103, 'Employee', 'Three', 'DNI', '33334444', '111-222-3333', 'employee.three@example.com', 'employee3', 'Masculino', '1985-12-15'),
+(104, 'Employee', 'Four', 'Pasaporte', 'B44445555', '444-555-6666', 'employee.four@example.com', 'secure45', 'Femenino', '1987-04-28');
