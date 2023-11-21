@@ -80,7 +80,7 @@ public class NewHabitacion extends javax.swing.JFrame {
 
         jFormattedTextFieldPiso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        jComboBoxDisponibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No disponible" }));
+        jComboBoxDisponibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado" }));
 
         jLabel4.setText("ID Tipo de Habitación: ");
 
@@ -125,7 +125,7 @@ public class NewHabitacion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jComboBoxDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 60, Short.MAX_VALUE))
+                        .addGap(0, 78, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -133,7 +133,6 @@ public class NewHabitacion extends javax.swing.JFrame {
                             .addComponent(jFormattedTextFieldPiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(jFormattedTextFieldIDTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
@@ -166,7 +165,7 @@ public class NewHabitacion extends javax.swing.JFrame {
 
     public void setDatos(Habitacion obj) {
         //false=no disponible;true=disponible
-        jComboBoxDisponibilidad.setSelectedItem(obj.isEstadoOcupacion() ? "Disponible" : "No disponible");
+        jComboBoxDisponibilidad.setSelectedItem(obj.isEstadoOcupacion() ? "Disponible" : "Ocupado");
         jFormattedTextFieldIDTipoHab.setText(String.valueOf(obj.getIdTipo()));
         jFormattedTextFieldPiso.setText(String.valueOf(obj.getPiso()));
 

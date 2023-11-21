@@ -215,7 +215,7 @@ public class CRUDHabitacion extends javax.swing.JFrame {
                 Object[] fila = {
                     dato.getNumeroHabitacion(),
                     dato.getIdTipo(),
-                    dato.isEstadoOcupacion()?"Disponible":"No disponible",
+                    dato.isEstadoOcupacion()?"Disponible":"Ocupado",
                     dato.getPiso()
                 };
                 model.addRow(fila);
