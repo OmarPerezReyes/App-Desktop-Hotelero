@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import javax.swing.*;
+
 /**
  *
  * @author omarperez
@@ -16,9 +18,15 @@ public class MenuTemporal extends javax.swing.JFrame {
     public MenuTemporal() {
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+        }
+
+
 
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
