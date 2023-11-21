@@ -124,7 +124,7 @@ public abstract class ModeloBaseImpl<T> implements ModeloBase<T> {
                 ex.printStackTrace(); // Imprime el rastreo de la excepción en la consola (puedes comentar esto en producción)
 
                 // Muestra un JOptionPane con el mensaje de error
-                JOptionPane.showMessageDialog(null, "Error, el id de la reserva no existe", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error, la clave foránea no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 flag = false;
             }
 
