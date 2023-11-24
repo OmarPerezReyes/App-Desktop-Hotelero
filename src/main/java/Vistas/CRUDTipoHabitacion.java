@@ -131,7 +131,7 @@ public class CRUDTipoHabitacion extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTableDatos.setPreferredSize(new java.awt.Dimension(1400, 80));
+        jTableDatos.setPreferredSize(new java.awt.Dimension(1400, 380));
         jScrollPane1.setViewportView(jTableDatos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
