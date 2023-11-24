@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import java.awt.FlowLayout;
 import javax.swing.*;
 
 /**
@@ -17,13 +18,10 @@ public class MenuTemporal extends javax.swing.JFrame {
      */
     public MenuTemporal() {
         initComponents();
+        CRUDCliente crud = new CRUDCliente();
+        showJPanel(crud);
         setLocationRelativeTo(null); // Centrar en la pantalla
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-        }
-
-
+      
 
     }
 
@@ -31,118 +29,232 @@ public class MenuTemporal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelbackground = new javax.swing.JPanel();
+        jPanelMenu = new javax.swing.JPanel();
+        jButtonAcompañante = new javax.swing.JButton();
+        jButtonHabitacion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButtonCliente = new javax.swing.JButton();
         jButtonEmpleado = new javax.swing.JButton();
-        jButtonAcompañante = new javax.swing.JButton();
         jButtonTipoHabitacion = new javax.swing.JButton();
-        jButtonHabitacion = new javax.swing.JButton();
+        jPanelContenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonCliente.setText("CLIENTES");
-        jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClienteActionPerformed(evt);
-            }
-        });
+        jPanelbackground.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButtonEmpleado.setText("EMPLEADOS");
-        jButtonEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEmpleadoActionPerformed(evt);
-            }
-        });
+        jPanelMenu.setBackground(new java.awt.Color(211, 197, 174));
 
-        jButtonAcompañante.setText("ACOMPAÑANTES");
+        jButtonAcompañante.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonAcompañante.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAcompañante.setText("Acompañantes");
+        jButtonAcompañante.setBorder(null);
+        jButtonAcompañante.setBorderPainted(false);
+        jButtonAcompañante.setContentAreaFilled(false);
+        jButtonAcompañante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAcompañante.setFocusPainted(false);
         jButtonAcompañante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAcompañanteActionPerformed(evt);
             }
         });
 
-        jButtonTipoHabitacion.setText("TIPOS DE HABITACIONES");
-        jButtonTipoHabitacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTipoHabitacionActionPerformed(evt);
-            }
-        });
-
-        jButtonHabitacion.setText("HABITACIONES");
+        jButtonHabitacion.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonHabitacion.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonHabitacion.setText("Habitaciones");
+        jButtonHabitacion.setBorder(null);
+        jButtonHabitacion.setBorderPainted(false);
+        jButtonHabitacion.setContentAreaFilled(false);
+        jButtonHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonHabitacion.setFocusPainted(false);
         jButtonHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHabitacionActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonTipoHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAcompañante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(49, Short.MAX_VALUE))
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/hotel-san-agustin-riviera-lima-peru.png"))); // NOI18N
+
+        jButtonCliente.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonCliente.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCliente.setText("Clientes");
+        jButtonCliente.setBorder(null);
+        jButtonCliente.setBorderPainted(false);
+        jButtonCliente.setContentAreaFilled(false);
+        jButtonCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCliente.setFocusPainted(false);
+        jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClienteActionPerformed(evt);
+            }
+        });
+
+        jButtonEmpleado.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEmpleado.setText("Empleados");
+        jButtonEmpleado.setBorder(null);
+        jButtonEmpleado.setBorderPainted(false);
+        jButtonEmpleado.setContentAreaFilled(false);
+        jButtonEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEmpleado.setFocusPainted(false);
+        jButtonEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEmpleadoActionPerformed(evt);
+            }
+        });
+
+        jButtonTipoHabitacion.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonTipoHabitacion.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonTipoHabitacion.setText("Tipos de Habitaciones");
+        jButtonTipoHabitacion.setBorder(null);
+        jButtonTipoHabitacion.setBorderPainted(false);
+        jButtonTipoHabitacion.setContentAreaFilled(false);
+        jButtonTipoHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonTipoHabitacion.setFocusPainted(false);
+        jButtonTipoHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTipoHabitacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
+        jPanelMenu.setLayout(jPanelMenuLayout);
+        jPanelMenuLayout.setHorizontalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonTipoHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelMenuLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonAcompañante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+        jPanelMenuLayout.setVerticalGroup(
+            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addGap(48, 48, 48)
                 .addComponent(jButtonCliente)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonEmpleado)
-                .addGap(18, 18, 18)
                 .addComponent(jButtonAcompañante)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonEmpleado)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonTipoHabitacion)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonHabitacion)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
+        );
+
+        jPanelContenido.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelContenido.setPreferredSize(new java.awt.Dimension(703, 504));
+
+        javax.swing.GroupLayout jPanelContenidoLayout = new javax.swing.GroupLayout(jPanelContenido);
+        jPanelContenido.setLayout(jPanelContenidoLayout);
+        jPanelContenidoLayout.setHorizontalGroup(
+            jPanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 708, Short.MAX_VALUE)
+        );
+        jPanelContenidoLayout.setVerticalGroup(
+            jPanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanelbackgroundLayout = new javax.swing.GroupLayout(jPanelbackground);
+        jPanelbackground.setLayout(jPanelbackgroundLayout);
+        jPanelbackgroundLayout.setHorizontalGroup(
+            jPanelbackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelbackgroundLayout.createSequentialGroup()
+                .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelbackgroundLayout.setVerticalGroup(
+            jPanelbackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelbackgroundLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelbackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelbackground, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
-        this.dispose();
         CRUDCliente crud = new CRUDCliente();
-        crud.setVisible(true);
+        showJPanel(crud);
     }//GEN-LAST:event_jButtonClienteActionPerformed
 
     private void jButtonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmpleadoActionPerformed
-        this.dispose();
         CRUDEmpleado crud = new CRUDEmpleado();
-        crud.setVisible(true);
+        showJPanel(crud);
     }//GEN-LAST:event_jButtonEmpleadoActionPerformed
 
     private void jButtonAcompañanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcompañanteActionPerformed
-        this.dispose();
         CRUDAcompañante crud = new CRUDAcompañante();
-        crud.setVisible(true);
+        showJPanel(crud);
     }//GEN-LAST:event_jButtonAcompañanteActionPerformed
 
     private void jButtonTipoHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTipoHabitacionActionPerformed
-        this.dispose();
         CRUDTipoHabitacion crud = new CRUDTipoHabitacion();
-        crud.setVisible(true);
+        showJPanel(crud);
     }//GEN-LAST:event_jButtonTipoHabitacionActionPerformed
 
     private void jButtonHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHabitacionActionPerformed
-        this.dispose();
         CRUDHabitacion crud = new CRUDHabitacion();
-        crud.setVisible(true);
+        showJPanel(crud);
     }//GEN-LAST:event_jButtonHabitacionActionPerformed
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+          try {
+            // Establecer el aspecto Nimbus al principio del programa
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+               java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuTemporal().setVisible(true);
             }
         });
+        } catch (Exception e) {
+            // Manejar la excepción si no se puede establecer el aspecto
+            e.printStackTrace();
+        }
+     
+    }
+    
+    private void showJPanel(JPanel crud){
+          try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+        }
+        crud.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        crud.setSize(703, 504);
+        crud.setLocation(0,0);
+        jPanelContenido.removeAll();
+        jPanelContenido.add(crud);
+        jPanelContenido.revalidate();
+        jPanelContenido.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,5 +263,9 @@ public class MenuTemporal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEmpleado;
     private javax.swing.JButton jButtonHabitacion;
     private javax.swing.JButton jButtonTipoHabitacion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanelContenido;
+    private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelbackground;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,28 +1,30 @@
 package Vistas;
 
-import Modelos.ModeloCliente;
+import javax.swing.JOptionPane;
 
 import Modelos.Cliente;
+import Modelos.ModeloCliente;
+import Vistas.MenuTemporal;
+import Vistas.NewCliente;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author omarperez
  */
-public class CRUDCliente extends javax.swing.JFrame {
+public class CRUDCliente extends javax.swing.JPanel {
 
     private final ModeloCliente modelo;
 
     public CRUDCliente() {
         initComponents();
-        setLocationRelativeTo(null); // Centrar en la pantalla
         modelo = new ModeloCliente();
         cargarDatosEnTabla();
     }
@@ -31,34 +33,41 @@ public class CRUDCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButtonNuevo = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
         jTextFieldBuscar = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDatos = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jButtonVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButtonNuevo.setBackground(new java.awt.Color(204, 255, 204));
         jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoActionPerformed(evt);
             }
         });
 
+        jButtonModificar.setBackground(new java.awt.Color(255, 255, 204));
         jButtonModificar.setText("Modificar");
+        jButtonModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarActionPerformed(evt);
             }
         });
 
+        jButtonEliminar.setBackground(new java.awt.Color(255, 204, 204));
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonEliminarMouseClicked(evt);
@@ -76,26 +85,35 @@ public class CRUDCliente extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonNuevo)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonModificar)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonEliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNuevo)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonEliminar)
-                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jLabel1.setText(" CRUD Clientes");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
         jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,116 +134,69 @@ public class CRUDCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableDatos.setPreferredSize(new java.awt.Dimension(1400, 80));
         jScrollPane1.setViewportView(jTableDatos);
-        if (jTableDatos.getColumnModel().getColumnCount() > 0) {
-            jTableDatos.getColumnModel().getColumn(0).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(1).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(2).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(3).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(4).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(5).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(6).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(7).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(8).setResizable(false);
-            jTableDatos.getColumnModel().getColumn(9).setResizable(false);
-        }
-
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel1.setText(" CRUD Clientes");
-
-        jButtonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/volver-flecha.png"))); // NOI18N
-        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVolverActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         nuevo();
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
-    private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
-        buscar();
-    }//GEN-LAST:event_jTextFieldBuscarKeyTyped
-
-    private void jButtonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseClicked
-       eliminar();
-    }//GEN-LAST:event_jButtonEliminarMouseClicked
-
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         modificar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
-    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        this.dispose();
-        MenuTemporal menu = new MenuTemporal();
-        menu.setVisible(true);
-    }//GEN-LAST:event_jButtonVolverActionPerformed
+    private void jButtonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseClicked
+        eliminar();
+    }//GEN-LAST:event_jButtonEliminarMouseClicked
 
-    public static void main(String args[]) {
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CRUDCliente().setVisible(true);
-            }
-        });
-    }
+    private void jTextFieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarKeyTyped
+        buscar();
+    }//GEN-LAST:event_jTextFieldBuscarKeyTyped
 
     private void cargarDatosEnTabla() {
         try {
@@ -248,6 +219,7 @@ public class CRUDCliente extends javax.swing.JFrame {
                 };
                 model.addRow(fila);
             }
+                    jTableDatos.setAutoResizeMode(jTableDatos.AUTO_RESIZE_ALL_COLUMNS);
 
         } catch (SQLException e) {
             // Manejar el error
@@ -284,9 +256,9 @@ public class CRUDCliente extends javax.swing.JFrame {
 
         }
     }
-    
-    private void eliminar(){
-         int filaSeleccionada = jTableDatos.getSelectedRow();
+
+    private void eliminar() {
+        int filaSeleccionada = jTableDatos.getSelectedRow();
 
         if (filaSeleccionada != -1) {
             int confirmacion = JOptionPane.showConfirmDialog(this,
@@ -294,25 +266,26 @@ public class CRUDCliente extends javax.swing.JFrame {
                     "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
- try {
-            int idCliente = (int) jTableDatos.getValueAt(filaSeleccionada, 0);
-            // Llamada al método del modelo para eliminar el dato
-            modelo.eliminar(idCliente);
+                try {
+                    int idCliente = (int) jTableDatos.getValueAt(filaSeleccionada, 0);
+                    // Llamada al método del modelo para eliminar el dato
+                    modelo.eliminar(idCliente);
 
-            // Actualizar la tabla después de eliminar la fila
-            cargarDatosEnTabla();
+                    // Actualizar la tabla después de eliminar la fila
+                    cargarDatosEnTabla();
 
-        } catch (SQLException e) {
-            // Manejar el error
+                } catch (SQLException e) {
+                    // Manejar el error
 
-        }            }
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void nuevo(){
+    private void nuevo() {
         NewCliente newForm = new NewCliente();
         newForm.setLocationRelativeTo(null); // Centrar en la pantalla
         // Agregar un WindowListener al formulario llamado
@@ -329,8 +302,8 @@ public class CRUDCliente extends javax.swing.JFrame {
         newForm.setVisible(true);
 
     }
-    
-    private void modificar(){
+
+    private void modificar() {
         int filaSeleccionada = jTableDatos.getSelectedRow();
 
         if (filaSeleccionada != -1) {
@@ -368,11 +341,11 @@ public class CRUDCliente extends javax.swing.JFrame {
         }
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonNuevo;
-    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
