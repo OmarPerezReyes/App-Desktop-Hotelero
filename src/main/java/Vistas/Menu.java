@@ -11,15 +11,13 @@ import javax.swing.*;
  *
  * @author omarperez
  */
-public class MenuTemporal extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuTemporal
      */
-    public MenuTemporal() {
+    public Menu() {
         initComponents();
-        CRUDCliente crud = new CRUDCliente();
-        showJPanel(crud);
         setLocationRelativeTo(null); // Centrar en la pantalla
       
 
@@ -38,6 +36,7 @@ public class MenuTemporal extends javax.swing.JFrame {
         jButtonEmpleado = new javax.swing.JButton();
         jButtonTipoHabitacion = new javax.swing.JButton();
         jPanelContenido = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,15 +156,23 @@ public class MenuTemporal extends javax.swing.JFrame {
         jPanelContenido.setBackground(new java.awt.Color(255, 255, 255));
         jPanelContenido.setPreferredSize(new java.awt.Dimension(703, 504));
 
+        jLabel2.setText("BIENVENIDO");
+
         javax.swing.GroupLayout jPanelContenidoLayout = new javax.swing.GroupLayout(jPanelContenido);
         jPanelContenido.setLayout(jPanelContenidoLayout);
         jPanelContenidoLayout.setHorizontalGroup(
             jPanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
+            .addGroup(jPanelContenidoLayout.createSequentialGroup()
+                .addGap(302, 302, 302)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         jPanelContenidoLayout.setVerticalGroup(
             jPanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGroup(jPanelContenidoLayout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(jLabel2)
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelbackgroundLayout = new javax.swing.GroupLayout(jPanelbackground);
@@ -175,15 +182,15 @@ public class MenuTemporal extends javax.swing.JFrame {
             .addGroup(jPanelbackgroundLayout.createSequentialGroup()
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelbackgroundLayout.setVerticalGroup(
             jPanelbackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelbackgroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jPanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
         );
 
@@ -232,7 +239,7 @@ public class MenuTemporal extends javax.swing.JFrame {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuTemporal().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
         } catch (Exception e) {
@@ -264,6 +271,7 @@ public class MenuTemporal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonHabitacion;
     private javax.swing.JButton jButtonTipoHabitacion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelContenido;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelbackground;
