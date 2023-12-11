@@ -43,10 +43,10 @@ VALUES
 
 INSERT INTO ACOMPAÑANTE (id_det_reserva, nombre, apellido, tipo_doc_identidad, num_doc_identidad, email)
 VALUES
-(4, 'Luisa', 'Ramírez', 'IFE', '765432109', 'luisa@gmail.com'),
-(5, 'Gabriel', 'Torres', 'INE', '345678901', 'gabriel@gmail.com'),
-(6, 'Carmen', 'Sánchez', 'IFE', '678901234', 'carmen@gmail.com'),
-(7, 'Sergio', 'Fernández', 'INE', '456789012', 'sergio@gmail.com');
+(4, 'Luisa', 'Ramírez'),
+(5, 'Gabriel', 'Torres'),
+(6, 'Carmen', 'Sánchez'),
+(7, 'Sergio', 'Fernández');
 
 INSERT INTO EMPLEADO (id_empleado, nombre, apellido, tipo_doc_identidad, num_doc_identidad, telefono, email, contraseña, sexo, fecha_nacimiento)
 VALUES
@@ -55,4 +55,3 @@ VALUES
 (3, 'Patricia', 'Mendoza', 'DNI', '123456789', '555-3333', 'patricia@example.com', 'secreto89', 'Femenino', '1995-11-18'),
 (4, 'Jorge', 'Castillo', 'Licencia', 'XYZ987', '555-4444', 'jorge@example.com', 'clave789', 'Masculino', '1998-02-03'),
 (5, 'Karla', 'Ruiz', 'DNI', '456789012', '555-5555', 'karla@example.com', 'contraseña98', 'Femenino', '1985-06-17');
-

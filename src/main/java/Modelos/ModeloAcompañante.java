@@ -28,14 +28,13 @@ public class ModeloAcompañante extends ModeloBaseImpl<Acompañante> {
 
     @Override
     protected String getInsertQuery() {
-        return "INSERT INTO ACOMPAÑANTE (id_det_reserva, nombre, apellido, tipo_doc_identidad, num_doc_identidad, email, id_acompañante) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        return "INSERT INTO ACOMPAÑANTE (id_det_reserva, nombre, apellido, id_acompañante) "
+                + "VALUES (?, ?, ?, ?)";
     }
 
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE ACOMPAÑANTE SET id_det_reserva=?, nombre=?, apellido=?, tipo_doc_identidad=?, num_doc_identidad=?, "
-                + "email=? WHERE id_acompañante=?";
+        return "UPDATE ACOMPAÑANTE SET id_det_reserva=?, nombre=?, apellido=?  " + " WHERE id_acompañante=?";
     }
 
     @Override
@@ -49,12 +48,8 @@ public class ModeloAcompañante extends ModeloBaseImpl<Acompañante> {
         int idDetReserva = resultSet.getInt("id_det_reserva");
         String nombre = resultSet.getString("nombre");
         String apellido = resultSet.getString("apellido");
-        String tipoDocIdentidad = resultSet.getString("tipo_doc_identidad");
-        String numDocIdentidad = resultSet.getString("num_doc_identidad");
-        String email = resultSet.getString("email");
 
-        return new Acompañante(idAcompañante, idDetReserva, nombre, apellido,
-                tipoDocIdentidad, numDocIdentidad, email);
+        return new Acompañante(idAcompañante, idDetReserva, nombre, apellido);
     }
 
     @Override
@@ -62,9 +57,6 @@ public class ModeloAcompañante extends ModeloBaseImpl<Acompañante> {
         statement.setInt(1, entidad.getIdDetReserva());
         statement.setString(2, entidad.getNombre());
         statement.setString(3, entidad.getApellido());
-        statement.setString(4, entidad.getTipoDocIdentidad());
-        statement.setString(5, entidad.getNumDocIdentidad());
-        statement.setString(6, entidad.getEmail());
         statement.setInt(7, entidad.getIdAcompañante());
 
     }

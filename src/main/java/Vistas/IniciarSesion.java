@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class IniciarSesion extends javax.swing.JPanel {
     private InicioSesionListener inicioSesionListener;
-
+    private int idUsuario = 0;
     public IniciarSesion() {
         initComponents();
     }
@@ -139,6 +139,7 @@ public class IniciarSesion extends javax.swing.JPanel {
             if (inicioSesionListener != null) {
                 inicioSesionListener.onInicioSesionExitoso();
                 inicioSesionListener.onTipoUsuario(tipoUsuario);
+                inicioSesionListener.onIdUsuario(idUsuario);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error en el inicio de sesión. Verifica el correo y la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -176,8 +177,8 @@ public class IniciarSesion extends javax.swing.JPanel {
 // Método para validar las credenciales en la base de datos y obtener el tipo de usuario
     private String validarInicioSesion(String correo, String contrasena) {
         try (Connection conexion = ConnectionDB.obtenerConexion();
-             PreparedStatement clienteStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE email = ? AND contraseña = ?");
-             PreparedStatement empleadoStatement = conexion.prepareStatement("SELECT * FROM EMPLEADO WHERE email = ? AND contraseña = ?")) {
+             PreparedStatement clienteStatement = conexion.prepareStatement("SELECT id_cliente FROM CLIENTE WHERE email = ? AND contraseña = ?");
+             PreparedStatement empleadoStatement = conexion.prepareStatement("SELECT id_empleado FROM EMPLEADO WHERE email = ? AND contraseña = ?")) {
 
             clienteStatement.setString(1, correo);
             clienteStatement.setString(2, contrasena);
@@ -189,8 +190,10 @@ public class IniciarSesion extends javax.swing.JPanel {
 
             // Verificar si el usuario es un cliente
             if (clienteResultSet.next()) {
+                this.idUsuario = clienteResultSet.getInt("id_cliente");
                 return "Cliente";
             } else if (empleadoResultSet.next()) {
+                this.idUsuario = empleadoResultSet.getInt("id_empleado");
                 return "Empleado";
             }
 

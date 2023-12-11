@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author omarperez
  */
 public class Main extends javax.swing.JFrame implements InicioSesionListener {
-
+    private String tipoUsuario = null;
     private boolean bandera = true;
 
     public Main() {
@@ -20,7 +20,7 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         IniciarSesion vista = new IniciarSesion();
         vista.setInicioSesionListener(this); 
         showJPanel(vista);
-        this.jButtonBotonHoriz.setText("Registrar cliente");
+        this.jButtonHoriz.setText("Registrar cliente");
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +30,8 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         jPanelbackground = new javax.swing.JPanel();
         jPanelMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonBotonHoriz = new javax.swing.JButton();
+        jButtonHoriz = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         jPanelContenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,17 +42,31 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imgs/hotel-san-agustin-riviera-lima-peru-inicio.png"))); // NOI18N
 
-        jButtonBotonHoriz.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jButtonBotonHoriz.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonBotonHoriz.setText("Nuevo cliente");
-        jButtonBotonHoriz.setBorder(null);
-        jButtonBotonHoriz.setBorderPainted(false);
-        jButtonBotonHoriz.setContentAreaFilled(false);
-        jButtonBotonHoriz.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonBotonHoriz.setFocusPainted(false);
-        jButtonBotonHoriz.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHoriz.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonHoriz.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonHoriz.setText("Nuevo cliente");
+        jButtonHoriz.setBorder(null);
+        jButtonHoriz.setBorderPainted(false);
+        jButtonHoriz.setContentAreaFilled(false);
+        jButtonHoriz.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonHoriz.setFocusPainted(false);
+        jButtonHoriz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBotonHorizActionPerformed(evt);
+                jButtonHorizActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.setBorder(null);
+        jButtonSalir.setBorderPainted(false);
+        jButtonSalir.setContentAreaFilled(false);
+        jButtonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalir.setFocusPainted(false);
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
             }
         });
 
@@ -59,11 +74,12 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         jPanelMenu.setLayout(jPanelMenuLayout);
         jPanelMenuLayout.setHorizontalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonBotonHoriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonHoriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jButtonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,8 +87,10 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                 .addGap(41, 41, 41)
-                .addComponent(jButtonBotonHoriz)
-                .addGap(266, 266, 266))
+                .addComponent(jButtonHoriz)
+                .addGap(221, 221, 221)
+                .addComponent(jButtonSalir)
+                .addGap(27, 27, 27))
         );
 
         jPanelContenido.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,20 +137,25 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonBotonHorizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBotonHorizActionPerformed
+    private void jButtonHorizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHorizActionPerformed
         if (bandera) {
             bandera = false;
             RegistrarCliente vista = new RegistrarCliente();
             showJPanel(vista);
-            this.jButtonBotonHoriz.setText("Iniciar Sesión");
+            this.jButtonHoriz.setText("Iniciar Sesión");
         } else {
             bandera = true;
             IniciarSesion vista = new IniciarSesion();
             vista.setInicioSesionListener(this); 
             showJPanel(vista);
-            this.jButtonBotonHoriz.setText("Registrar cliente");
+            this.jButtonHoriz.setText("Registrar cliente");
         }
-    }//GEN-LAST:event_jButtonBotonHorizActionPerformed
+    }//GEN-LAST:event_jButtonHorizActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -170,7 +193,8 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         this.dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBotonHoriz;
+    private javax.swing.JButton jButtonHoriz;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelContenido;
     private javax.swing.JPanel jPanelMenu;
@@ -178,7 +202,11 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
     // End of variables declaration//GEN-END:variables
 
     public void onTipoUsuario(String tipoUsuario) {
-        Menu menu = new Menu(tipoUsuario);
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public void onIdUsuario(int idUsuario) {
+        Menu menu = new Menu(tipoUsuario, idUsuario);
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
     }

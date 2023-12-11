@@ -25,6 +25,7 @@ CREATE TABLE TIPO_HABITACION(
     check_out TIME NOT NULL, 
     descripcion VARCHAR(10) NOT NULL
 );
+
 CREATE TABLE HABITACION(
     numero_habitacion INTEGER PRIMARY KEY NOT NULL,
     id_tipo INTEGER NOT NULL,
@@ -57,9 +58,6 @@ CREATE TABLE ACOMPAÑANTE(
     id_det_reserva INTEGER NOT NULL,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    tipo_doc_identidad VARCHAR(15) NOT NULL,
-    num_doc_identidad VARCHAR(15) NOT NULL,
-    email VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_det_reserva) REFERENCES DETALLE_RESERVA(id_det_reserva)
 );
 

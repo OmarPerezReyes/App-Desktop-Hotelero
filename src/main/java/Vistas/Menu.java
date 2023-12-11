@@ -14,38 +14,44 @@ import javax.swing.*;
 public class Menu extends javax.swing.JFrame {
 
     private String tipoUsuario = null;
-    public Menu(String tipoUsuario) {
+    private int idUsuario = 0;
+
+    public Menu(String tipoUsuario, int idUsuario) {
         this.tipoUsuario = tipoUsuario;
+        this.idUsuario = idUsuario;
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
-        ReservarHabitacion vista = new ReservarHabitacion();
-        showJPanel(vista);
-        if(tipoUsuario.equals("Cliente")){
+
+        if (tipoUsuario.equals("Cliente")) {
+            ReservarHabitacion vista = new ReservarHabitacion(idUsuario);
+            showJPanel(vista);
             this.jButtonReservarHabitacion.setEnabled(true);
             this.jButtonConocerHabitaciones.setEnabled(true);
             this.jButtonConsultarReservaciones.setEnabled(true);
-            
+
             this.jButtonAcompañante.setEnabled(false);
             this.jButtonCliente.setEnabled(false);
             this.jButtonEmpleado.setEnabled(false);
             this.jButtonHabitacion.setEnabled(false);
             this.jButtonTipoHabitacion.setEnabled(false);
-            
+
             this.jButtonAcompañante.setText("");
             this.jButtonCliente.setText("");
             this.jButtonEmpleado.setText("");
             this.jButtonHabitacion.setText("");
             this.jButtonTipoHabitacion.setText("");
             this.jLabelMensajeMantenimientoTablas.setText("");
-        }else{
+        } else {
+            CRUDCliente vista = new CRUDCliente();
+            showJPanel(vista);
             this.jButtonReservarHabitacion.setEnabled(false);
             this.jButtonConocerHabitaciones.setEnabled(false);
             this.jButtonConsultarReservaciones.setEnabled(false);
-            
+
             this.jButtonReservarHabitacion.setText("");
             this.jButtonConocerHabitaciones.setText("");
             this.jButtonConsultarReservaciones.setText("");
-            
+
             this.jButtonAcompañante.setEnabled(true);
             this.jButtonCliente.setEnabled(true);
             this.jButtonEmpleado.setEnabled(true);
@@ -368,29 +374,29 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConsultarReservacionesActionPerformed
 
     public static void main(String args[]) {
-          try {
+        try {
             // Establecer el aspecto Nimbus al principio del programa
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-               java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            }
-        });
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                }
+            });
         } catch (Exception e) {
             // Manejar la excepción si no se puede establecer el aspecto
             e.printStackTrace();
         }
-     
+
     }
-    
-    private void showJPanel(JPanel crud){
-          try {
+
+    private void showJPanel(JPanel crud) {
+        try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
         }
         crud.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
         crud.setSize(703, 504);
-        crud.setLocation(0,0);
+        crud.setLocation(0, 0);
         jPanelContenido.removeAll();
         jPanelContenido.add(crud);
         jPanelContenido.revalidate();

@@ -7,4 +7,6 @@ package Modelos;
 public interface InicioSesionListener {
     void onInicioSesionExitoso();
     void onTipoUsuario(String tipoUsuario);
+    void onIdUsuario(int idUsuario);
+
 }
