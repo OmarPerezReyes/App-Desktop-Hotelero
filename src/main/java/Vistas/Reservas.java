@@ -172,26 +172,33 @@ public class Reservas extends javax.swing.JPanel {
     }
 
     private void cargarDatosEnTabla() {
-        try {
-            List<TipoHabitacion> datos = modelo.obtenerTodos();
-            //System.out.println(datos);
+         try {
+            List<DetalleReserva> detallesReserva = modeloDetalleReserva.obtenerTodos();
             DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
             model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
-            for (TipoHabitacion dato : datos) {
+            for (DetalleReserva detalle : detallesReserva) {
+                Boleta boleta = modeloBoleta.obtenerPorDetalleReserva(detalle.getIdDetalleReserva());
+                
                 Object[] fila = {
-                    dato.getIdTipo(),
-                    dato.getPrecio(),
-                    dato.getCapacidad(),
-                    dato.getCheckIn(),
-                    dato.getCheckOut()
+                    detalle.getIdDetalleReserva(),
+                    detalle.getIdReserva(),
+                    detalle.getIdHabitacion(),
+                    detalle.getFechaEntrada(),
+                    detalle.getFechaSalida(),
+                    boleta != null ? boleta.getFechaPago() : "",
+                    boleta != null ? boleta.getMonto() : "",
+                    boleta != null ? boleta.getMetodoPago() : ""
                 };
                 model.addRow(fila);
             }
-
         } catch (SQLException e) {
             // Manejar el error
+            e.printStackTrace();
         }
+    }
+
+    // ...
     }
 
     private void buscar() {
