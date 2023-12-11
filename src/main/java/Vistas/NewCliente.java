@@ -380,7 +380,7 @@ public class NewCliente extends javax.swing.JFrame {
             } else {
 
 // Obtener el nuevo ID basado en el valor máximo actual
-                int nuevoId = modelos.obtenerNuevoId();
+int nuevoId = modelos.obtenerNuevoId();
                 Cliente nuevo = new Cliente(nuevoId, nombre, apellido, tipoDocIdentidad,
                         numDocIdentidad, telefono, email, contraseña, sexo, fechaNacimiento);
 

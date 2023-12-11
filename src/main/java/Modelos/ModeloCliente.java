@@ -70,8 +70,5 @@ protected String getUpdateQuery() {
         statement.setDate(9, new java.sql.Date(entidad.getFechaNacimiento().getTime()));
         statement.setInt(10, entidad.getIdCliente());
     }
-    
        
 }
-
-

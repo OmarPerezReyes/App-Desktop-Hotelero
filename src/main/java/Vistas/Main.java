@@ -18,7 +18,7 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
         IniciarSesion vista = new IniciarSesion();
-        vista.setInicioSesionListener(this); // Asegúrate de hacer esto.
+        vista.setInicioSesionListener(this); 
         showJPanel(vista);
         this.jButtonBotonHoriz.setText("Registrar cliente");
     }
@@ -128,7 +128,7 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
         } else {
             bandera = true;
             IniciarSesion vista = new IniciarSesion();
-            vista.setInicioSesionListener(this); // Asegúrate de hacer esto.
+            vista.setInicioSesionListener(this); 
             showJPanel(vista);
             this.jButtonBotonHoriz.setText("Registrar cliente");
         }
@@ -168,9 +168,6 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
     @Override
     public void onInicioSesionExitoso() {
         this.dispose();
-        Menu menu = new Menu();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBotonHoriz;
@@ -179,4 +176,10 @@ public class Main extends javax.swing.JFrame implements InicioSesionListener {
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelbackground;
     // End of variables declaration//GEN-END:variables
+
+    public void onTipoUsuario(String tipoUsuario) {
+        Menu menu = new Menu(tipoUsuario);
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+    }
 }

@@ -13,14 +13,45 @@ import javax.swing.*;
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuTemporal
-     */
-    public Menu() {
+    private String tipoUsuario = null;
+    public Menu(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
-      
-
+        ReservarHabitacion vista = new ReservarHabitacion();
+        showJPanel(vista);
+        if(tipoUsuario.equals("Cliente")){
+            this.jButtonReservarHabitacion.setEnabled(true);
+            this.jButtonConocerHabitaciones.setEnabled(true);
+            this.jButtonConsultarReservaciones.setEnabled(true);
+            
+            this.jButtonAcompañante.setEnabled(false);
+            this.jButtonCliente.setEnabled(false);
+            this.jButtonEmpleado.setEnabled(false);
+            this.jButtonHabitacion.setEnabled(false);
+            this.jButtonTipoHabitacion.setEnabled(false);
+            
+            this.jButtonAcompañante.setText("");
+            this.jButtonCliente.setText("");
+            this.jButtonEmpleado.setText("");
+            this.jButtonHabitacion.setText("");
+            this.jButtonTipoHabitacion.setText("");
+            this.jLabelMensajeMantenimientoTablas.setText("");
+        }else{
+            this.jButtonReservarHabitacion.setEnabled(false);
+            this.jButtonConocerHabitaciones.setEnabled(false);
+            this.jButtonConsultarReservaciones.setEnabled(false);
+            
+            this.jButtonReservarHabitacion.setText("");
+            this.jButtonConocerHabitaciones.setText("");
+            this.jButtonConsultarReservaciones.setText("");
+            
+            this.jButtonAcompañante.setEnabled(true);
+            this.jButtonCliente.setEnabled(true);
+            this.jButtonEmpleado.setEnabled(true);
+            this.jButtonHabitacion.setEnabled(true);
+            this.jButtonTipoHabitacion.setEnabled(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -36,6 +67,10 @@ public class Menu extends javax.swing.JFrame {
         jButtonEmpleado = new javax.swing.JButton();
         jButtonTipoHabitacion = new javax.swing.JButton();
         jButtonCerrarSesion = new javax.swing.JButton();
+        jLabelMensajeMantenimientoTablas = new javax.swing.JLabel();
+        jButtonReservarHabitacion = new javax.swing.JButton();
+        jButtonConocerHabitaciones = new javax.swing.JButton();
+        jButtonConsultarReservaciones = new javax.swing.JButton();
         jPanelContenido = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -131,44 +166,106 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabelMensajeMantenimientoTablas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMensajeMantenimientoTablas.setText("Mantenimiento de tablas:");
+
+        jButtonReservarHabitacion.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonReservarHabitacion.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonReservarHabitacion.setText("Reservar habitación");
+        jButtonReservarHabitacion.setBorder(null);
+        jButtonReservarHabitacion.setBorderPainted(false);
+        jButtonReservarHabitacion.setContentAreaFilled(false);
+        jButtonReservarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonReservarHabitacion.setFocusPainted(false);
+        jButtonReservarHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReservarHabitacionActionPerformed(evt);
+            }
+        });
+
+        jButtonConocerHabitaciones.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonConocerHabitaciones.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonConocerHabitaciones.setText("Conocer habitaciones");
+        jButtonConocerHabitaciones.setBorder(null);
+        jButtonConocerHabitaciones.setBorderPainted(false);
+        jButtonConocerHabitaciones.setContentAreaFilled(false);
+        jButtonConocerHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConocerHabitaciones.setFocusPainted(false);
+        jButtonConocerHabitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConocerHabitacionesActionPerformed(evt);
+            }
+        });
+
+        jButtonConsultarReservaciones.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonConsultarReservaciones.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonConsultarReservaciones.setText("Consultar reservaciones");
+        jButtonConsultarReservaciones.setBorder(null);
+        jButtonConsultarReservaciones.setBorderPainted(false);
+        jButtonConsultarReservaciones.setContentAreaFilled(false);
+        jButtonConsultarReservaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConsultarReservaciones.setFocusPainted(false);
+        jButtonConsultarReservaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarReservacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
         jPanelMenuLayout.setHorizontalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
-                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonTipoHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelMenuLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonAcompañante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMenuLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanelMenuLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabelMensajeMantenimientoTablas)))
+                .addGap(17, 23, Short.MAX_VALUE))
+            .addComponent(jButtonCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonTipoHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonAcompañante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelMenuLayout.createSequentialGroup()
+                        .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonReservarHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonConocerHabitaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonConsultarReservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addGap(39, 39, 39)
+                .addComponent(jButtonReservarHabitacion)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonConsultarReservaciones)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonConocerHabitaciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelMensajeMantenimientoTablas)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonCliente)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonAcompañante)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonEmpleado)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonTipoHabitacion)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonHabitacion)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCerrarSesion)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         jPanelContenido.setBackground(new java.awt.Color(255, 255, 255));
@@ -183,7 +280,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanelContenidoLayout.createSequentialGroup()
                 .addGap(302, 302, 302)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         jPanelContenidoLayout.setVerticalGroup(
             jPanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,9 +295,9 @@ public class Menu extends javax.swing.JFrame {
         jPanelbackgroundLayout.setHorizontalGroup(
             jPanelbackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelbackgroundLayout.createSequentialGroup()
-                .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addComponent(jPanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelbackgroundLayout.setVerticalGroup(
@@ -258,13 +355,24 @@ public class Menu extends javax.swing.JFrame {
         main.setVisible(true);
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
+    private void jButtonReservarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservarHabitacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReservarHabitacionActionPerformed
+
+    private void jButtonConocerHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConocerHabitacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConocerHabitacionesActionPerformed
+
+    private void jButtonConsultarReservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarReservacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConsultarReservacionesActionPerformed
+
     public static void main(String args[]) {
           try {
             // Establecer el aspecto Nimbus al principio del programa
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
             }
         });
         } catch (Exception e) {
@@ -293,11 +401,15 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAcompañante;
     private javax.swing.JButton jButtonCerrarSesion;
     private javax.swing.JButton jButtonCliente;
+    private javax.swing.JButton jButtonConocerHabitaciones;
+    private javax.swing.JButton jButtonConsultarReservaciones;
     private javax.swing.JButton jButtonEmpleado;
     private javax.swing.JButton jButtonHabitacion;
+    private javax.swing.JButton jButtonReservarHabitacion;
     private javax.swing.JButton jButtonTipoHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelMensajeMantenimientoTablas;
     private javax.swing.JPanel jPanelContenido;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelbackground;

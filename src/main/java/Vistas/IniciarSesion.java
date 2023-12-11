@@ -129,14 +129,16 @@ public class IniciarSesion extends javax.swing.JPanel {
         String correo = this.jFormattedTextFieldCorreo.getText();
         char[] contrasenaArray = jPasswordField.getPassword();
         String contrasena = new String(contrasenaArray);
+        
+        String tipoUsuario = validarInicioSesion(correo, contrasena);
 
         // Validar las credenciales en la base de datos
-        if (validarInicioSesion(correo, contrasena)) {
+        if (tipoUsuario != null) {
             JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
-
             // Notificar al listener que el inicio de sesión fue exitoso
             if (inicioSesionListener != null) {
                 inicioSesionListener.onInicioSesionExitoso();
+                inicioSesionListener.onTipoUsuario(tipoUsuario);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error en el inicio de sesión. Verifica el correo y la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -169,32 +171,39 @@ public class IniciarSesion extends javax.swing.JPanel {
 }
     public void setInicioSesionListener(InicioSesionListener listener) {
         this.inicioSesionListener = listener;
-    }
+    }   
 
-    // Método para validar las credenciales en la base de datos
-    private boolean validarInicioSesion(String correo, String contrasena) {
+// Método para validar las credenciales en la base de datos y obtener el tipo de usuario
+    private String validarInicioSesion(String correo, String contrasena) {
         try (Connection conexion = ConnectionDB.obtenerConexion();
-             PreparedStatement statement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE email = ? AND contraseña = ?")) {
+             PreparedStatement clienteStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE email = ? AND contraseña = ?");
+             PreparedStatement empleadoStatement = conexion.prepareStatement("SELECT * FROM EMPLEADO WHERE email = ? AND contraseña = ?")) {
 
-            statement.setString(1, correo);
-            statement.setString(2, contrasena);
+            clienteStatement.setString(1, correo);
+            clienteStatement.setString(2, contrasena);
+            ResultSet clienteResultSet = clienteStatement.executeQuery();
 
-            ResultSet resultSet = statement.executeQuery();
+            empleadoStatement.setString(1, correo);
+            empleadoStatement.setString(2, contrasena);
+            ResultSet empleadoResultSet = empleadoStatement.executeQuery();
 
-            // Si se encuentra al menos un usuario, las credenciales son válidas
-            return resultSet.next();
+            // Verificar si el usuario es un cliente
+            if (clienteResultSet.next()) {
+                return "Cliente";
+            } else if (empleadoResultSet.next()) {
+                return "Empleado";
+            }
+
+            // Si no se encuentra ningún usuario, las credenciales no son válidas
+            return null;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         } finally {
             ConnectionDB.cerrarConexion();
         }
     }
-    
-    // ... (otro código)
-
-
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIniciarSesion;
