@@ -35,6 +35,7 @@ public class Menu extends javax.swing.JFrame {
         jButtonCliente = new javax.swing.JButton();
         jButtonEmpleado = new javax.swing.JButton();
         jButtonTipoHabitacion = new javax.swing.JButton();
+        jButtonCerrarSesion = new javax.swing.JButton();
         jPanelContenido = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -116,12 +117,31 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jButtonCerrarSesion.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButtonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCerrarSesion.setText("Cerrar sesión");
+        jButtonCerrarSesion.setBorder(null);
+        jButtonCerrarSesion.setBorderPainted(false);
+        jButtonCerrarSesion.setContentAreaFilled(false);
+        jButtonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCerrarSesion.setFocusPainted(false);
+        jButtonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarSesionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
         jPanelMenuLayout.setHorizontalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
                 .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonTipoHabitacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelMenuLayout.createSequentialGroup()
@@ -130,10 +150,6 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jButtonAcompañante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
-            .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +166,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jButtonTipoHabitacion)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonHabitacion)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCerrarSesion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelContenido.setBackground(new java.awt.Color(255, 255, 255));
@@ -233,6 +251,13 @@ public class Menu extends javax.swing.JFrame {
         showJPanel(crud);
     }//GEN-LAST:event_jButtonHabitacionActionPerformed
 
+    private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
+        this.dispose();
+        Main main = new Main();
+        main.setLocationRelativeTo(null);
+        main.setVisible(true);
+    }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
+
     public static void main(String args[]) {
           try {
             // Establecer el aspecto Nimbus al principio del programa
@@ -266,6 +291,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcompañante;
+    private javax.swing.JButton jButtonCerrarSesion;
     private javax.swing.JButton jButtonCliente;
     private javax.swing.JButton jButtonEmpleado;
     private javax.swing.JButton jButtonHabitacion;

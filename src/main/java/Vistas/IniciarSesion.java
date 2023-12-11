@@ -1,8 +1,11 @@
 package Vistas;
 
+import Controladores.ConnectionDB;
 import Modelos.InicioSesionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,6 +38,18 @@ public class IniciarSesion extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel2.setText("Iniciar Sesión");
+
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldCorreoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Correo: ");
 
@@ -111,24 +126,31 @@ public class IniciarSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
-   // Obtener el correo y la contraseña ingresados
-    String correo = jFormattedTextFieldCorreo.getText();
-    char[] contrasenaArray = jPasswordField.getPassword();
-    String contrasena = new String(contrasenaArray);
+        String correo = this.jFormattedTextFieldCorreo.getText();
+        char[] contrasenaArray = jPasswordField.getPassword();
+        String contrasena = new String(contrasenaArray);
 
-    if (validarCorreo(correo) && validarContrasena(contrasena)) {
-        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
-       // Notificar al listener que el inicio de sesión fue exitoso
+        // Validar las credenciales en la base de datos
+        if (validarInicioSesion(correo, contrasena)) {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+
+            // Notificar al listener que el inicio de sesión fue exitoso
             if (inicioSesionListener != null) {
-                System.out.println("cambio");
                 inicioSesionListener.onInicioSesionExitoso();
             }
         } else {
-            // La validación falló, muestra un mensaje de error y limpia el formulario
             JOptionPane.showMessageDialog(this, "Error en el inicio de sesión. Verifica el correo y la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
             limpiarFormulario();
         }
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
+
+    private void jFormattedTextFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCorreoActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
 
 
     public static void main(String args[]) {
@@ -145,22 +167,33 @@ public class IniciarSesion extends javax.swing.JPanel {
     jFormattedTextFieldCorreo.setText("");
     jPasswordField.setText("");
 }
-
-    private boolean validarCorreo(String correo) {
-    // Expresión regular para validar un correo electrónico
-    String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-
-    // Retorna true si el correo coincide con la expresión regular, false en caso contrario
-    return correo.matches(regex);
-}
-    private boolean validarContrasena(String contrasena) {
-    // Verificar si la contraseña tiene al menos 8 caracteres.
-    return contrasena.length() >= 8;
-}
-
     public void setInicioSesionListener(InicioSesionListener listener) {
         this.inicioSesionListener = listener;
     }
+
+    // Método para validar las credenciales en la base de datos
+    private boolean validarInicioSesion(String correo, String contrasena) {
+        try (Connection conexion = ConnectionDB.obtenerConexion();
+             PreparedStatement statement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE email = ? AND contraseña = ?")) {
+
+            statement.setString(1, correo);
+            statement.setString(2, contrasena);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            // Si se encuentra al menos un usuario, las credenciales son válidas
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            ConnectionDB.cerrarConexion();
+        }
+    }
+    
+    // ... (otro código)
+
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
